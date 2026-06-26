@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Reveal } from "./Reveal";
-import { priceList } from "@/lib/content";
+import { priceList, type PriceRow } from "@/lib/content";
 
 const EASE = [0.23, 1, 0.32, 1] as const;
 
@@ -12,6 +12,35 @@ const EASE = [0.23, 1, 0.32, 1] as const;
 function enquire(subject: string) {
   window.dispatchEvent(new CustomEvent("prefill-enquiry", { detail: subject }));
   document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+}
+
+function PriceItem({ item }: { item: PriceRow }) {
+  return (
+    <li className="break-inside-avoid">
+      <div className="flex items-baseline gap-3">
+        <span className="font-serif text-base text-ink md:text-lg">
+          {item.name}
+          {item.unit && (
+            <span className="ml-2 text-[0.65rem] uppercase tracking-eyebrow text-stone">
+              {item.unit}
+            </span>
+          )}
+        </span>
+        <span
+          className="mb-1 h-px flex-1 border-b border-dotted border-stone/40"
+          aria-hidden
+        />
+        <span className="whitespace-nowrap font-serif text-base text-clay md:text-lg">
+          {item.price}
+        </span>
+      </div>
+      {item.includes && (
+        <p className="mt-1 text-[0.8rem] font-light leading-snug text-charcoal/60">
+          {item.includes}
+        </p>
+      )}
+    </li>
+  );
 }
 
 export function Pricing() {
@@ -67,53 +96,47 @@ export function Pricing() {
               transition={{ duration: 0.5, ease: EASE }}
             >
               {category.intro && (
-                <p className="mb-10 text-xs uppercase tracking-eyebrow text-bronze">
+                <p className="mb-8 text-xs uppercase tracking-eyebrow text-bronze">
                   {category.intro}
                 </p>
               )}
 
-              <div className="grid gap-x-16 gap-y-12 md:grid-cols-2">
-                {category.blocks.map((block) => (
-                  <div key={block.title ?? "block"} className="break-inside-avoid">
-                    {block.title && (
-                      <h3 className="mb-5 font-serif text-2xl font-normal text-ink">
-                        {block.title}
-                      </h3>
-                    )}
-                    <ul className="space-y-5">
-                      {block.items.map((item) => (
-                        <li key={item.name}>
-                          <div className="flex items-baseline gap-3">
-                            <span className="font-serif text-lg text-ink">
-                              {item.name}
-                              {item.unit && (
-                                <span className="ml-2 text-xs uppercase tracking-eyebrow text-stone">
-                                  {item.unit}
-                                </span>
-                              )}
-                            </span>
-                            <span
-                              className="mb-1 h-px flex-1 border-b border-dotted border-stone/40"
-                              aria-hidden
-                            />
-                            <span className="font-serif text-lg text-clay">
-                              {item.price}
-                            </span>
-                          </div>
-                          {item.includes && (
-                            <p className="mt-1.5 max-w-prose text-sm font-light leading-relaxed text-charcoal/65">
-                              {item.includes}
-                            </p>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
+              {category.blocks.length === 1 ? (
+                // Single list (e.g. Makeup Services) — balance into two columns
+                // so it reads compact instead of one tall column.
+                <ul className="columns-1 gap-x-14 sm:columns-2 [&>li]:mb-5 [&>li]:break-inside-avoid">
+                  {category.blocks[0].items.map((item) => (
+                    <PriceItem key={item.name} item={item} />
+                  ))}
+                </ul>
+              ) : (
+                // Multiple blocks — each region/group becomes its own column.
+                <div
+                  className={`grid gap-x-12 gap-y-10 ${
+                    category.blocks.length >= 3
+                      ? "sm:grid-cols-2 lg:grid-cols-3"
+                      : "sm:grid-cols-2"
+                  }`}
+                >
+                  {category.blocks.map((block) => (
+                    <div key={block.title ?? "block"}>
+                      {block.title && (
+                        <h3 className="mb-4 font-serif text-xl font-normal text-ink md:text-2xl">
+                          {block.title}
+                        </h3>
+                      )}
+                      <ul className="space-y-4">
+                        {block.items.map((item) => (
+                          <PriceItem key={item.name} item={item} />
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
 
               {category.footnote && (
-                <p className="mt-12 text-xs uppercase tracking-eyebrow text-bronze">
+                <p className="mt-10 text-xs uppercase tracking-eyebrow text-bronze">
                   {category.footnote}
                 </p>
               )}
