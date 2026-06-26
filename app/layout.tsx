@@ -1,14 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter, Italiana } from "next/font/google";
 import { brand } from "@/lib/content";
 import { Preloader } from "@/components/Preloader";
 import "./globals.css";
 
-// Editorial, elegant serif for display/headings.
+// Editorial, elegant serif for section headings & body display.
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
   variable: "--font-cormorant",
+  display: "swap",
+});
+
+// Distinctive, modern elegant serif used only for the "Sia's Makeup" wordmark.
+const italiana = Italiana({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-wordmark",
   display: "swap",
 });
 
@@ -106,7 +114,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${italiana.variable} ${inter.variable}`}>
       <body>
         <script
           type="application/ld+json"
