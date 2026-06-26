@@ -30,7 +30,6 @@ export const brand = {
 export const navLinks = [
   { label: "Work", href: "#work" },
   { label: "Services", href: "#services" },
-  { label: "Studio", href: "#studio" },
   { label: "Pricing", href: "#pricing" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
