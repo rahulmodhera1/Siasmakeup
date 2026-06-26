@@ -10,11 +10,18 @@ import type { Category } from "./gallery";
 export const brand = {
   name: "Sia's Makeup",
   wordmark: "SIA'S MAKEUP",
+  monogram: "SM",
   artist: "Sia",
   email: "Siasmakeup@hotmail.com",
-  // Placeholder — Sia to confirm the real handle.
+  phone: "(437) 882-5076",
+  phoneHref: "tel:+14378825076",
   instagram: "https://instagram.com/siasmakeup",
-  instagramHandle: "@siasmakeup",
+  instagramHandle: "@Siasmakeup",
+  tiktok: "https://www.tiktok.com/@siasmakeupp",
+  tiktokHandle: "@Siasmakeupp",
+  // Facebook page slug is a best guess — update if the real URL differs.
+  facebook: "https://www.facebook.com/siasmakeup",
+  facebookHandle: "Sia's Makeup",
   location: "Toronto, ON",
   serviceArea: "Available across the GTA",
   tagline: "Toronto · Freelance Makeup Artist",
@@ -62,99 +69,157 @@ export const services: Service[] = [
   },
 ];
 
-export type PricingTile = {
+// ---------------------------------------------------------------------------
+//  PRICE LIST  — Sia's real published rates.
+//  Grouped into three categories shown as tabs in the Pricing section.
+//  To edit: change a price string, add a row to `items`, or add a block.
+// ---------------------------------------------------------------------------
+export type PriceRow = {
   name: string;
-  // Pre-fills the contact form subject when "Enquire" is clicked.
-  subject: string;
-  price: string;
-  unit?: string;
-  inclusions: string[];
+  price: string; // e.g. "$130", "TBD", "40%"
+  unit?: string; // e.g. "per head"
+  includes?: string; // optional inclusions sentence
 };
 
-export type PricingGroup = {
+export type PriceBlock = {
+  title?: string; // e.g. "Within GTA"
+  items: PriceRow[];
+};
+
+export type PriceCategory = {
+  id: string;
   label: string;
-  note?: string;
-  tiles: PricingTile[];
+  subject: string; // pre-fills the contact form when "Enquire" is clicked
+  intro?: string;
+  footnote?: string;
+  blocks: PriceBlock[];
 };
 
-// NOTE: all figures below are placeholders. // TODO: Sia to confirm
-export const pricing: PricingGroup[] = [
+export const priceList: PriceCategory[] = [
   {
+    id: "bridal",
     label: "Bridal",
-    note: "Custom quotes for full bridal parties & productions.",
-    tiles: [
+    subject: "Bridal enquiry",
+    intro: "All services include false lashes.",
+    blocks: [
       {
-        name: "Bridal Trial",
-        subject: "Bridal Trial enquiry",
-        price: "from $120", // TODO: Sia to confirm
-        inclusions: [
-          "Private 90-minute consultation",
-          "Skin prep & complexion mapping",
-          "One full look, photographed for reference",
+        title: "Within the GTA",
+        items: [
+          { name: "Bridal Consultation", price: "$30" },
+          { name: "Bridal Trial", price: "$50" },
+          { name: "Bridal Makeup", price: "$130" },
+          { name: "Mother of the Bride / Groom", price: "$120" },
+          { name: "Bridesmaid's Makeup", price: "$100", unit: "per person" },
+          { name: "Travel / Kit Fee", price: "$40" },
         ],
       },
       {
-        name: "Bridal Day-Of",
-        subject: "Bridal Day-Of enquiry",
-        price: "from $250", // TODO: Sia to confirm
-        inclusions: [
-          "Long-wear, photo-ready application",
-          "Lashes included",
-          "Touch-up kit for the day",
+        title: "Out of Town",
+        items: [
+          { name: "Bridal Consultation", price: "$30" },
+          { name: "Bridal Trial", price: "$70" },
+          { name: "Bridal Makeup", price: "$150" },
+          { name: "Mother of the Bride / Groom", price: "$140" },
+          { name: "Bridesmaid's Makeup", price: "$120", unit: "per person" },
+          { name: "Travel / Kit Fee", price: "TBD" },
         ],
       },
       {
-        name: "Bridal Party",
-        subject: "Bridal Party enquiry",
-        price: "from $90", // TODO: Sia to confirm
-        unit: "per person",
-        inclusions: [
-          "Coordinated looks for your party",
-          "On-location, day-of application",
-          "Group scheduling & timeline planning",
-        ],
-      },
-    ],
-  },
-  {
-    label: "Events",
-    tiles: [
-      {
-        name: "Event / Glam Application",
-        subject: "Event glam enquiry",
-        price: "from $110", // TODO: Sia to confirm
-        inclusions: [
-          "Full-face evening glam",
-          "Lashes included",
-          "Soft or bold — built to your brief",
+        title: "Out of Country",
+        items: [
+          { name: "Bridal Consultation", price: "$30" },
+          { name: "Bridal Trial", price: "TBD" },
+          { name: "Bridal Makeup", price: "$150" },
+          { name: "Mother of the Bride / Groom", price: "$140" },
+          { name: "Bridesmaid's Makeup", price: "$120", unit: "per person" },
+          { name: "Travel (round trip)", price: "40%" },
         ],
       },
     ],
   },
   {
-    label: "Photography & Fashion",
-    note: "Travel within the GTA available.",
-    tiles: [
+    id: "makeup",
+    label: "Makeup Services",
+    subject: "Makeup services enquiry",
+    footnote: "Set prices apply with or without lashes · Travel fee TBD.",
+    blocks: [
       {
-        name: "Editorial / Shoot Rate",
-        subject: "Editorial shoot enquiry",
-        price: "from $150", // TODO: Sia to confirm
-        unit: "per look",
-        inclusions: [
-          "Concept-led beauty for stills & motion",
-          "Tested for studio & natural light",
-          "Collaboration with your creative team",
+        items: [
+          { name: "False Lash Application", price: "$5" },
+          {
+            name: "False Lash + Liner",
+            price: "$10",
+            includes: "Mascara, tightrope lining, false lashes.",
+          },
+          {
+            name: "Brows Only",
+            price: "$20",
+            includes: "Filling, concealing + powder.",
+          },
+          {
+            name: "Eyes Only",
+            price: "$30",
+            includes: "Light brows, eyeshadow, liner, mascara + lashes.",
+          },
+          {
+            name: "Express Face",
+            price: "$45",
+            includes:
+              "Skin prep, brows, mascara, a wash of colour, light concealing, blush / bronzer + lipgloss.",
+          },
+          {
+            name: "Full Face Makeup",
+            price: "$85",
+            includes:
+              "Skin prep, colour correcting, brows, full eyes, concealer, foundation, bronzer / contour, blush, highlight + false lashes.",
+          },
+          {
+            name: "SFX · Halloween · Theatre",
+            price: "$100",
+            includes: "Special-effects, costume & stage makeup.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: "mens",
+    label: "Men's Grooming",
+    subject: "Men's grooming enquiry",
+    footnote: "Travel + kit fee determined upon booking.",
+    blocks: [
+      {
+        title: "Brows & Beards",
+        items: [
+          { name: "Eyebrow Clean-Up / Shaping", price: "$10" },
+          { name: "Eyebrow Tinting", price: "$15" },
+          { name: "Beard Trimming / Light Shaping", price: "$25" },
+          { name: "Beard Tinting", price: "$30" },
         ],
       },
       {
-        name: "On-Set Day Rate",
-        subject: "On-set day rate enquiry",
-        price: "from $650", // TODO: Sia to confirm
-        unit: "per day",
-        inclusions: [
-          "Full-day on-set availability",
-          "Continuity & touch-ups across looks",
-          "Kit for multiple models & changes",
+        title: "Grooming Packages",
+        items: [
+          {
+            name: "Basic Grooming",
+            price: "$50",
+            unit: "single look / event",
+            includes:
+              "Skin prep, light concealer, anti-shine products, beard & eyebrow grooming + basic hair styling.",
+          },
+          {
+            name: "Headshots / Photography",
+            price: "$100",
+            unit: "1–2 looks",
+            includes:
+              "Skin prep, concealer, beard & eyebrow grooming, anti-shine products + hair styling.",
+          },
+          {
+            name: "Wedding Day Grooming",
+            price: "$120",
+            includes:
+              "Skin prep, light foundation / concealer, beard & eyebrow grooming, anti-shine products, hair styling + touch-up kit.",
+          },
         ],
       },
     ],
@@ -189,4 +254,10 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
-export const eventTypes = ["Bridal", "Fashion", "Photography", "Event"] as const;
+export const eventTypes = [
+  "Bridal",
+  "Makeup",
+  "Men's Grooming",
+  "Photography",
+  "Other",
+] as const;

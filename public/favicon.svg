@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#2B2926"/>
-  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" font-family="Georgia, serif" font-size="34" fill="#F4F1EC">S</text>
-  <circle cx="46" cy="20" r="4" fill="#A56A4E"/>
+  <rect width="64" height="64" rx="13" fill="#2B2926"/>
+  <text x="50%" y="53%" text-anchor="middle" dominant-baseline="central"
+    font-family="'Cormorant Garamond', Georgia, serif" font-weight="500"
+    font-size="30" letter-spacing="1.5" fill="#F4F1EC">SM</text>
 </svg>

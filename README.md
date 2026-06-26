@@ -48,10 +48,11 @@ missing, the site shows a tidy on-brand placeholder instead of breaking.
 
 ### Brand details, services, pricing, testimonials — `lib/content.ts`
 
-- **`brand`** — name, email, Instagram, location.
+- **`brand`** — name, email, phone, Instagram / TikTok / Facebook, location.
 - **`services`** — the four specialty cards.
-- **`pricing`** — packages grouped by specialty. All figures are placeholders
-  marked `// TODO: Sia to confirm` — edit the `price`, `unit` and `inclusions`.
+- **`priceList`** — the real rates, grouped into the Bridal / Makeup Services /
+  Men's Grooming tabs. Edit a `price` string, add a `{ name, price }` row to any
+  block, or add a whole block — the Pricing section renders it automatically.
 - **`testimonials`** — replace the placeholder quotes with real ones.
 
 ---

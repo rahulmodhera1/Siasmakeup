@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Instagram, Mail, MapPin } from "lucide-react";
+import { Facebook, Instagram, Mail, MapPin, Music2, Phone } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { brand, eventTypes } from "@/lib/content";
 
@@ -106,26 +106,60 @@ export function Contact() {
                 href={`mailto:${brand.email}`}
                 className="group flex items-center gap-4 text-ink"
               >
-                <Mail strokeWidth={1.25} className="h-5 w-5 text-clay" />
-                <span className="underline-grow font-serif text-xl font-light md:text-2xl">
+                <Mail strokeWidth={1.25} className="h-5 w-5 shrink-0 text-clay" />
+                <span className="underline-grow break-all font-serif text-xl font-light md:text-2xl">
                   {brand.email}
                 </span>
               </a>
 
               <a
-                href={brand.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={brand.phoneHref}
                 className="group flex items-center gap-4 text-charcoal"
               >
-                <Instagram strokeWidth={1.25} className="h-5 w-5 text-clay" />
+                <Phone strokeWidth={1.25} className="h-5 w-5 shrink-0 text-clay" />
                 <span className="underline-grow text-sm font-light tracking-wide">
-                  {brand.instagramHandle}
+                  {brand.phone}
                 </span>
               </a>
 
-              <div className="flex items-center gap-4 text-charcoal/80">
-                <MapPin strokeWidth={1.25} className="h-5 w-5 text-clay" />
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-1">
+                <a
+                  href={brand.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2.5 text-charcoal"
+                >
+                  <Instagram strokeWidth={1.25} className="h-5 w-5 text-clay" />
+                  <span className="underline-grow text-sm font-light tracking-wide">
+                    {brand.instagramHandle}
+                  </span>
+                </a>
+                <a
+                  href={brand.tiktok}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2.5 text-charcoal"
+                >
+                  <Music2 strokeWidth={1.25} className="h-5 w-5 text-clay" />
+                  <span className="underline-grow text-sm font-light tracking-wide">
+                    {brand.tiktokHandle}
+                  </span>
+                </a>
+                <a
+                  href={brand.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center gap-2.5 text-charcoal"
+                >
+                  <Facebook strokeWidth={1.25} className="h-5 w-5 text-clay" />
+                  <span className="underline-grow text-sm font-light tracking-wide">
+                    {brand.facebookHandle}
+                  </span>
+                </a>
+              </div>
+
+              <div className="flex items-center gap-4 pt-1 text-charcoal/80">
+                <MapPin strokeWidth={1.25} className="h-5 w-5 shrink-0 text-clay" />
                 <span className="text-sm font-light tracking-wide">
                   Based in {brand.location} · {brand.serviceArea}
                 </span>

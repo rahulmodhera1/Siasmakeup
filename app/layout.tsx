@@ -78,7 +78,9 @@ const jsonLd = {
   image: `${siteUrl}/images/hero/hero.jpg`,
   url: siteUrl,
   email: `mailto:${brand.email}`,
+  telephone: brand.phoneHref.replace("tel:", ""),
   description,
+  sameAs: [brand.instagram, brand.tiktok, brand.facebook],
   areaServed: {
     "@type": "City",
     name: "Toronto",
@@ -89,9 +91,13 @@ const jsonLd = {
     addressRegion: "ON",
     addressCountry: "CA",
   },
-  makesOffer: ["Bridal Makeup", "Fashion Makeup", "Photography Makeup", "Event Makeup"].map(
-    (name) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name } })
-  ),
+  makesOffer: [
+    "Bridal Makeup",
+    "Event & Glam Makeup",
+    "Photography & Editorial Makeup",
+    "Men's Grooming",
+    "SFX & Theatre Makeup",
+  ].map((name) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name } })),
 };
 
 export default function RootLayout({

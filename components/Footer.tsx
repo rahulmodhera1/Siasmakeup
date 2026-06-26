@@ -1,3 +1,4 @@
+import { Facebook, Instagram, Music2 } from "lucide-react";
 import { brand, navLinks } from "@/lib/content";
 
 export function Footer() {
@@ -35,13 +36,40 @@ export function Footer() {
               {brand.email}
             </a>
             <a
-              href={brand.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={brand.phoneHref}
               className="text-bone/70 transition-colors hover:text-sand"
             >
-              Instagram {brand.instagramHandle}
+              {brand.phone}
             </a>
+            <div className="mt-1 flex gap-5 text-bone/70">
+              <a
+                href={brand.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Instagram ${brand.instagramHandle}`}
+                className="transition-colors hover:text-sand"
+              >
+                <Instagram strokeWidth={1.25} className="h-5 w-5" />
+              </a>
+              <a
+                href={brand.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`TikTok ${brand.tiktokHandle}`}
+                className="transition-colors hover:text-sand"
+              >
+                <Music2 strokeWidth={1.25} className="h-5 w-5" />
+              </a>
+              <a
+                href={brand.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Facebook ${brand.facebookHandle}`}
+                className="transition-colors hover:text-sand"
+              >
+                <Facebook strokeWidth={1.25} className="h-5 w-5" />
+              </a>
+            </div>
           </div>
         </div>
 

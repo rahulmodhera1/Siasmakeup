@@ -1,6 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="80" viewBox="0 0 320 80" role="img" aria-label="Sia's Makeup">
-  <rect width="320" height="80" fill="none"/>
-  <text x="0" y="38" font-family="Georgia, 'Cormorant Garamond', serif" font-size="34" letter-spacing="2" fill="#1A1917">SIA'S MAKEUP</text>
-  <text x="2" y="62" font-family="Arial, 'Inter', sans-serif" font-size="11" letter-spacing="6" fill="#9A8467">TORONTO · MAKEUP ARTIST</text>
-  <line x1="2" y1="48" x2="318" y2="48" stroke="#A56A4E" stroke-width="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="180" viewBox="0 0 280 180" role="img" aria-label="Sia's Makeup">
+  <rect width="280" height="180" fill="none"/>
+  <!-- SM monogram -->
+  <text x="50%" y="92" text-anchor="middle"
+    font-family="'Cormorant Garamond', Georgia, serif" font-weight="500"
+    font-size="104" letter-spacing="2" fill="#1A1917">SM</text>
+  <!-- thin rule + wordmark -->
+  <line x1="70" y1="124" x2="210" y2="124" stroke="#C9C0B2" stroke-width="1"/>
+  <text x="50%" y="150" text-anchor="middle"
+    font-family="Arial, 'Inter', sans-serif" font-size="15" letter-spacing="9" fill="#2B2926">SIA'S MAKEUP</text>
 </svg>
