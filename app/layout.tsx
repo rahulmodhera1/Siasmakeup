@@ -6,8 +6,7 @@ import "./globals.css";
 // Editorial, elegant serif for display/headings.
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
+  weight: ["300", "400", "500", "600"],
   variable: "--font-cormorant",
   display: "swap",
 });
