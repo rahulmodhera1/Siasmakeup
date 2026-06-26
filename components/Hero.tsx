@@ -1,30 +1,43 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import { SmartImage } from "./SmartImage";
 
 const EASE = [0.23, 1, 0.32, 1] as const;
 
-// ---- Tagline options (swap the copy below if Sia prefers another) ----
-//  1. "Makeup that feels like you, elevated."   ← in use
-//  2. "Editorial beauty, made personal."
-//  3. "Looking like yourself — on your very best day."
+// Slow, drifting pools of warm light in Sia's palette — keeps the bone hero
+// alive without any photography. Low opacity so it stays elegant, never garish.
+const ORBS = [
+  {
+    color: "rgba(203,166,124,0.45)", // warm sand
+    className: "-left-[12%] top-[2%] h-[60vw] w-[60vw] md:h-[42vw] md:w-[42vw]",
+    anim: { x: [0, 50, 0], y: [0, 36, 0], scale: [1, 1.12, 1] },
+    duration: 19,
+  },
+  {
+    color: "rgba(165,106,78,0.20)", // clay
+    className: "right-[-10%] top-[12%] h-[55vw] w-[55vw] md:h-[40vw] md:w-[40vw]",
+    anim: { x: [0, -44, 0], y: [0, 40, 0], scale: [1.08, 1, 1.08] },
+    duration: 23,
+  },
+  {
+    color: "rgba(124,128,96,0.18)", // sage
+    className: "bottom-[-14%] left-[18%] h-[58vw] w-[58vw] md:h-[38vw] md:w-[38vw]",
+    anim: { x: [0, 40, 0], y: [0, -34, 0], scale: [1, 1.14, 1] },
+    duration: 26,
+  },
+  {
+    color: "rgba(154,132,103,0.22)", // bronze
+    className: "bottom-[2%] right-[6%] h-[46vw] w-[46vw] md:h-[32vw] md:w-[32vw]",
+    anim: { x: [0, -32, 0], y: [0, -28, 0], scale: [1.06, 1, 1.06] },
+    duration: 21,
+  },
+];
 
 export function Hero() {
-  const ref = useRef<HTMLElement>(null);
   const reduce = useReducedMotion();
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  // Gentle scroll-tied parallax on the framed image.
-  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", reduce ? "0%" : "10%"]);
-
-  // Reveal helpers — collapse to simple fades when reduced motion is requested.
   const rise = (delay: number) =>
     reduce
       ? { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { duration: 0.4, delay: delay * 0.5 } }
@@ -36,174 +49,123 @@ export function Hero() {
 
   return (
     <section
-      ref={ref}
       id="top"
-      className="grain relative flex min-h-[100svh] w-full items-center overflow-hidden bg-bone pt-24 pb-16 md:pt-28"
+      className="grain relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-bone px-6 pt-24 pb-16"
     >
-      {/* Warm daylight wash from the top-right — breathes almost imperceptibly. */}
+      {/* ---------- Living warm-light background ---------- */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+        {ORBS.map((orb, i) => (
+          <motion.div
+            key={i}
+            className={`absolute rounded-full blur-[60px] ${orb.className}`}
+            style={{ background: `radial-gradient(circle, ${orb.color}, transparent 68%)` }}
+            animate={reduce ? {} : orb.anim}
+            transition={{ duration: orb.duration, repeat: Infinity, ease: "easeInOut" }}
+          />
+        ))}
+        {/* Steady warm wash from the top-right + soft lift from below. */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(55% 50% at 85% 6%, rgba(203,166,124,0.30), transparent 70%), radial-gradient(45% 45% at 12% 96%, rgba(244,241,236,0.6), transparent 75%)",
+          }}
+        />
+      </div>
+
+      {/* Faint floating greenery sprigs in opposite corners. */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-0"
-        style={{
-          background:
-            "radial-gradient(60% 55% at 85% 8%, rgba(203,166,124,0.40), rgba(203,166,124,0) 70%)",
-        }}
-        animate={reduce ? {} : { opacity: [0.75, 1, 0.75] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-      />
-      {/* Soft lift from the lower-left so the room never feels flat. */}
-      <div
+        className="pointer-events-none absolute -left-6 bottom-2 z-0 w-28 opacity-50 md:w-40"
+        animate={reduce ? {} : { rotate: [-2, 2, -2], y: [0, -8, 0] }}
+        transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+        style={{ transformOrigin: "bottom center" }}
+      >
+        <Image src="/images/hero/sprig.svg" alt="" width={220} height={320} className="h-auto w-full" />
+      </motion.div>
+      <motion.div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-0"
-        style={{
-          background:
-            "radial-gradient(50% 50% at 18% 90%, rgba(244,241,236,0.7), rgba(244,241,236,0) 75%)",
-        }}
-      />
+        className="pointer-events-none absolute -right-8 top-28 z-0 w-24 -scale-x-100 opacity-40 md:w-32"
+        animate={reduce ? {} : { rotate: [2, -2, 2], y: [0, 9, 0] }}
+        transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
+        style={{ transformOrigin: "top center" }}
+      >
+        <Image src="/images/hero/sprig.svg" alt="" width={220} height={320} className="h-auto w-full" />
+      </motion.div>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-editorial items-center gap-12 px-6 md:px-10 lg:grid-cols-[1.15fr_0.95fr] lg:gap-16">
-        {/* ---------- Left: brand + words ---------- */}
-        <div className="order-2 lg:order-1">
-          <motion.p
-            className="font-sans text-xs uppercase text-bronze"
-            initial={{ opacity: 0, letterSpacing: reduce ? "0.25em" : "0.5em" }}
-            animate={{ opacity: 1, letterSpacing: "0.25em" }}
-            transition={{ duration: 1, ease: EASE, delay: 0.15 }}
+      {/* ---------- Centered brand statement ---------- */}
+      <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
+        <motion.p
+          className="font-sans text-xs uppercase text-bronze sm:text-sm"
+          initial={{ opacity: 0, letterSpacing: reduce ? "0.25em" : "0.55em" }}
+          animate={{ opacity: 1, letterSpacing: "0.28em" }}
+          transition={{ duration: 1, ease: EASE, delay: 0.15 }}
+        >
+          Toronto · Freelance Makeup Artist
+        </motion.p>
+
+        {/* The WOW — bold display serif, revealed with a mask wipe upward. */}
+        <div className="mt-6 overflow-hidden pb-2">
+          <motion.h1
+            className="font-serif text-[3.5rem] font-semibold leading-[0.92] tracking-[-0.01em] text-ink sm:text-8xl lg:text-[9.5rem]"
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 30, clipPath: "inset(100% 0 0 0)" }}
+            animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0, clipPath: "inset(0% 0 0 0)" }}
+            transition={{ duration: 1, ease: EASE, delay: 0.3 }}
           >
-            Toronto · Freelance Makeup Artist
-          </motion.p>
-
-          {/* The WOW moment — wordmark revealed with a mask wipe upward. */}
-          <div className="mt-5 overflow-hidden">
-            <motion.h1
-              className="font-serif text-6xl font-light leading-[0.95] tracking-tight text-ink sm:text-7xl lg:text-8xl"
-              initial={
-                reduce
-                  ? { opacity: 0 }
-                  : { opacity: 0, y: 26, clipPath: "inset(100% 0 0 0)" }
-              }
-              animate={
-                reduce
-                  ? { opacity: 1 }
-                  : { opacity: 1, y: 0, clipPath: "inset(0% 0 0 0)" }
-              }
-              transition={{ duration: 0.95, ease: EASE, delay: 0.3 }}
-            >
-              Sia&rsquo;s Makeup
-            </motion.h1>
-          </div>
-
-          {/* Hairline clay rule drawing in beneath the wordmark. */}
-          <motion.div
-            className="mt-6 h-px w-40 origin-left bg-clay"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.8, ease: EASE, delay: reduce ? 0.3 : 0.62 }}
-          />
-
-          <motion.p
-            className="mt-7 font-serif text-2xl font-light italic text-charcoal md:text-3xl"
-            {...rise(0.75)}
-          >
-            Makeup that feels like you,{" "}
-            <span className="relative not-italic text-clay">
-              elevated
-              <motion.span
-                className="absolute -bottom-1 left-0 h-px w-full origin-left bg-clay"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.7, ease: EASE, delay: reduce ? 0.35 : 1.05 }}
-              />
-            </span>
-            <span className="not-italic text-clay">.</span>
-          </motion.p>
-
-          <motion.p
-            className="mt-6 max-w-md text-base font-light leading-relaxed text-stone"
-            {...rise(reduce ? 0.9 : 0.95)}
-          >
-            Bridal, fashion, photography &amp; events — a refined, camera-tested
-            approach to beauty across Toronto &amp; the GTA.
-          </motion.p>
-
-          <motion.div
-            className="mt-10 flex flex-wrap items-center gap-4"
-            {...rise(reduce ? 1 : 1.1)}
-          >
-            <a
-              href="#work"
-              className="rounded-full bg-ink px-8 py-3.5 text-xs uppercase tracking-eyebrow text-bone transition-all duration-300 ease-out-expo hover:bg-charcoal active:scale-[0.98]"
-            >
-              View Work
-            </a>
-            <a
-              href="#contact"
-              className="rounded-full border border-clay px-8 py-3.5 text-xs uppercase tracking-eyebrow text-clay transition-all duration-300 ease-out-expo hover:bg-clay hover:text-bone active:scale-[0.98]"
-            >
-              Enquire
-            </a>
-          </motion.div>
+            Sia&rsquo;s Makeup
+          </motion.h1>
         </div>
 
-        {/* ---------- Right: the image as a framed gallery piece ---------- */}
-        <div className="relative order-1 mx-auto w-full max-w-sm lg:order-2 lg:max-w-none">
-          <motion.div
-            className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.25rem] rounded-t-[7rem] ring-1 ring-bronze/30 shadow-[0_36px_70px_-28px_rgba(43,41,38,0.35)]"
-            initial={
-              reduce ? { opacity: 0 } : { opacity: 0, clipPath: "inset(100% 0 0 0)" }
-            }
-            animate={
-              reduce ? { opacity: 1 } : { opacity: 1, clipPath: "inset(0% 0 0 0)" }
-            }
-            transition={{ duration: 1.1, ease: EASE, delay: 0.35 }}
-          >
-            <motion.div
-              className="absolute inset-0"
-              style={{ y: imgY }}
-              initial={reduce ? {} : { scale: 1.06 }}
-              animate={reduce ? {} : { scale: 1 }}
-              transition={{ duration: 1.5, ease: EASE, delay: 0.35 }}
-            >
-              <SmartImage
-                src="/images/hero/hero.jpg"
-                alt="Inside Sia's Makeup — a warm, light-filled Toronto studio"
-                label="Sia's Studio"
-                fill
-                priority
-                sizes="(max-width: 1024px) 90vw, 42vw"
-                className="object-cover"
-              />
-            </motion.div>
+        {/* Hairline clay rule drawing in beneath the wordmark. */}
+        <motion.div
+          className="mt-7 h-px w-28 bg-clay"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.8, ease: EASE, delay: reduce ? 0.3 : 0.62 }}
+        />
 
-            {/* Tiny editorial corner caption. */}
-            <span className="absolute bottom-4 right-5 z-10 text-[0.6rem] uppercase tracking-[0.3em] text-bone/90 mix-blend-difference">
-              Editorial · 2025
-            </span>
-          </motion.div>
+        <motion.p
+          className="mt-7 font-serif text-2xl font-light italic text-charcoal md:text-3xl"
+          {...rise(0.75)}
+        >
+          Makeup that feels like you,{" "}
+          <span className="relative not-italic font-normal text-clay">
+            elevated
+            <motion.span
+              className="absolute -bottom-1 left-0 h-px w-full origin-left bg-clay"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.7, ease: EASE, delay: reduce ? 0.35 : 1.05 }}
+            />
+          </span>
+          <span className="not-italic text-clay">.</span>
+        </motion.p>
 
-          {/* Greenery sprig overlapping the lower-left corner — sways faintly. */}
-          <motion.div
-            aria-hidden
-            className="pointer-events-none absolute -bottom-6 -left-8 z-20 w-28 origin-bottom opacity-80 md:w-32"
-            style={{ transformOrigin: "bottom center" }}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 0.8, y: 0 }}
-            transition={{ duration: 1, ease: EASE, delay: 1 }}
+        <motion.p
+          className="mt-6 max-w-xl text-base font-light leading-relaxed text-stone"
+          {...rise(reduce ? 0.9 : 0.95)}
+        >
+          Bridal, fashion, photography &amp; events — a refined, camera-tested
+          approach to beauty across Toronto &amp; the GTA.
+        </motion.p>
+
+        <motion.div
+          className="mt-10 flex flex-wrap items-center justify-center gap-4"
+          {...rise(reduce ? 1 : 1.1)}
+        >
+          <a
+            href="#work"
+            className="rounded-full bg-ink px-8 py-3.5 text-xs uppercase tracking-eyebrow text-bone transition-all duration-300 ease-out-expo hover:bg-charcoal active:scale-[0.98]"
           >
-            <motion.div
-              animate={reduce ? {} : { rotate: [-1.2, 1.2, -1.2] }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <Image
-                src="/images/hero/sprig.svg"
-                alt=""
-                width={220}
-                height={320}
-                className="h-auto w-full"
-              />
-            </motion.div>
-          </motion.div>
-        </div>
+            View Work
+          </a>
+          <a
+            href="#contact"
+            className="rounded-full border border-clay px-8 py-3.5 text-xs uppercase tracking-eyebrow text-clay transition-all duration-300 ease-out-expo hover:bg-clay hover:text-bone active:scale-[0.98]"
+          >
+            Enquire
+          </a>
+        </motion.div>
       </div>
 
       {/* Scroll cue */}
