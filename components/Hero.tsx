@@ -22,8 +22,8 @@ const ORBS = [
     duration: 23,
   },
   {
-    color: "rgba(124,128,96,0.18)", // sage
-    className: "bottom-[-14%] left-[18%] h-[58vw] w-[58vw] md:h-[38vw] md:w-[38vw]",
+    color: "rgba(124,128,96,0.26)", // sage — a touch more green
+    className: "bottom-[-12%] left-[14%] h-[60vw] w-[60vw] md:h-[40vw] md:w-[40vw]",
     anim: { x: [0, 40, 0], y: [0, -34, 0], scale: [1, 1.14, 1] },
     duration: 26,
   },
@@ -33,6 +33,18 @@ const ORBS = [
     anim: { x: [0, -32, 0], y: [0, -28, 0], scale: [1.06, 1, 1.06] },
     duration: 21,
   },
+];
+
+// Soft shimmer motes drifting upward — a quiet "glow / highlighter" touch that
+// gives the hero a makeup-artist feel. Deterministic so SSR stays stable.
+const MOTES = [
+  { left: "16%", size: 6, dur: 13, delay: 0, drift: 16, c: "203,166,124" },
+  { left: "29%", size: 4, dur: 16, delay: 3.5, drift: -12, c: "154,132,103" },
+  { left: "43%", size: 7, dur: 14, delay: 1.5, drift: 10, c: "244,241,236" },
+  { left: "57%", size: 5, dur: 17, delay: 5, drift: -14, c: "203,166,124" },
+  { left: "68%", size: 6, dur: 15, delay: 2.5, drift: 12, c: "154,132,103" },
+  { left: "81%", size: 4, dur: 18, delay: 6.5, drift: -9, c: "244,241,236" },
+  { left: "90%", size: 5, dur: 14, delay: 4, drift: 11, c: "203,166,124" },
 ];
 
 export function Hero() {
@@ -71,13 +83,41 @@ export function Hero() {
               "radial-gradient(55% 50% at 85% 6%, rgba(203,166,124,0.30), transparent 70%), radial-gradient(45% 45% at 12% 96%, rgba(244,241,236,0.6), transparent 75%)",
           }}
         />
+        {/* A whisper of green pooled in the lower-left, near the sprig. */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(34% 34% at 6% 92%, rgba(124,128,96,0.22), transparent 70%)",
+          }}
+        />
+
+        {/* Floating shimmer motes */}
+        {MOTES.map((m, i) => (
+          <motion.span
+            key={`m${i}`}
+            className="absolute bottom-0 rounded-full blur-[1.5px]"
+            style={{
+              left: m.left,
+              width: m.size,
+              height: m.size,
+              background: `radial-gradient(circle, rgba(${m.c},0.9), rgba(${m.c},0) 70%)`,
+            }}
+            animate={
+              reduce
+                ? { opacity: 0 }
+                : { y: [40, -760], x: [0, m.drift, 0], opacity: [0, 0.7, 0.7, 0], scale: [0.6, 1, 0.6] }
+            }
+            transition={{ duration: m.dur, delay: m.delay, repeat: Infinity, ease: "easeInOut" }}
+          />
+        ))}
       </div>
 
       {/* Faint floating greenery sprigs in opposite corners. */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute -left-6 bottom-2 z-0 w-28 opacity-50 md:w-40"
-        animate={reduce ? {} : { rotate: [-2, 2, -2], y: [0, -8, 0] }}
+        className="pointer-events-none absolute -left-5 bottom-2 z-0 w-32 opacity-[0.62] md:w-44"
+        animate={reduce ? {} : { rotate: [-2.5, 2.5, -2.5], y: [0, -9, 0] }}
         transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
         style={{ transformOrigin: "bottom center" }}
       >
@@ -85,7 +125,7 @@ export function Hero() {
       </motion.div>
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute -right-8 top-28 z-0 w-24 -scale-x-100 opacity-40 md:w-32"
+        className="pointer-events-none absolute -right-8 top-28 z-0 w-24 -scale-x-100 opacity-[0.45] md:w-32"
         animate={reduce ? {} : { rotate: [2, -2, 2], y: [0, 9, 0] }}
         transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
         style={{ transformOrigin: "top center" }}
@@ -104,10 +144,10 @@ export function Hero() {
           Toronto · Freelance Makeup Artist
         </motion.p>
 
-        {/* The WOW — bold display serif, revealed with a mask wipe upward. */}
-        <div className="mt-6 overflow-hidden pb-2">
+        {/* The WOW — fancy high-contrast display serif, mask-wiped upward. */}
+        <div className="mt-6 overflow-hidden pb-3">
           <motion.h1
-            className="font-serif text-[3.5rem] font-semibold leading-[0.92] tracking-[-0.01em] text-ink sm:text-8xl lg:text-[9.5rem]"
+            className="font-serif text-6xl font-medium leading-[0.95] tracking-[-0.01em] text-ink sm:text-7xl md:text-8xl lg:text-[7.5rem]"
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 30, clipPath: "inset(100% 0 0 0)" }}
             animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0, clipPath: "inset(0% 0 0 0)" }}
             transition={{ duration: 1, ease: EASE, delay: 0.3 }}
