@@ -36,30 +36,25 @@ export function Nav() {
       <nav className="mx-auto flex h-16 max-w-editorial items-center justify-between px-6 md:h-20 md:px-10">
         <a
           href="#top"
-          className="relative block h-9 w-[3.3rem] md:h-10 md:w-[3.7rem]"
+          className="flex items-center gap-3"
           aria-label={`${brand.name} — back to top`}
         >
-          {/* Bone monogram over the hero, charcoal once the bar turns solid. */}
-          <Image
-            src="/images/brand/mark-bone.png"
-            alt={brand.name}
-            fill
-            priority
-            sizes="60px"
-            className={`object-contain transition-opacity duration-500 ${
-              scrolled ? "opacity-0" : "opacity-100"
-            }`}
-          />
-          <Image
-            src="/images/brand/mark-charcoal.png"
-            alt=""
-            aria-hidden
-            fill
-            sizes="60px"
-            className={`object-contain transition-opacity duration-500 ${
-              scrolled ? "opacity-100" : "opacity-0"
-            }`}
-          />
+          {/* Monogram mark + the full wordmark, so the brand name always reads.
+              The hero is light now, so the mark stays charcoal throughout. */}
+          <span className="relative block h-9 w-[3.3rem] md:h-10 md:w-[3.7rem]">
+            <Image
+              src="/images/brand/mark-charcoal.png"
+              alt=""
+              aria-hidden
+              fill
+              priority
+              sizes="60px"
+              className="object-contain"
+            />
+          </span>
+          <span className="font-serif text-xl font-medium tracking-wide text-ink md:text-2xl">
+            {brand.name}
+          </span>
         </a>
 
         {/* Desktop links */}
@@ -68,20 +63,14 @@ export function Nav() {
             <a
               key={link.href}
               href={link.href}
-              className={`underline-grow text-sm font-light tracking-wide transition-colors duration-500 ${
-                scrolled ? "text-charcoal hover:text-ink" : "text-bone/90 hover:text-bone"
-              }`}
+              className="underline-grow text-sm font-light tracking-wide text-charcoal transition-colors duration-500 hover:text-ink"
             >
               {link.label}
             </a>
           ))}
           <a
             href="#contact"
-            className={`rounded-full border px-5 py-2 text-xs uppercase tracking-eyebrow transition-all duration-500 ease-out-expo ${
-              scrolled
-                ? "border-clay text-clay hover:bg-clay hover:text-bone"
-                : "border-bone/70 text-bone hover:bg-bone hover:text-ink"
-            }`}
+            className="rounded-full border border-clay px-5 py-2 text-xs uppercase tracking-eyebrow text-clay transition-all duration-500 ease-out-expo hover:bg-clay hover:text-bone"
           >
             Enquire
           </a>
@@ -91,9 +80,7 @@ export function Nav() {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className={`md:hidden transition-colors duration-500 ${
-            scrolled ? "text-ink" : "text-bone"
-          }`}
+          className="text-ink transition-colors duration-500 md:hidden"
           aria-label="Open menu"
         >
           <Menu strokeWidth={1.25} className="h-7 w-7" />
