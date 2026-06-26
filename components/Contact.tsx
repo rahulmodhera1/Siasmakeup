@@ -6,15 +6,22 @@ import { Reveal } from "./Reveal";
 import { brand, eventTypes } from "@/lib/content";
 
 // ----------------------------------------------------------------------------
-//  CONTACT FORM DELIVERY
-//  By default the form opens the visitor's email client with everything
-//  pre-filled (mailto:) — zero setup, works on Vercel out of the box.
+//  CONTACT FORM DELIVERY  —  Formspree (inbox delivery), mailto fallback
+//  ---------------------------------------------------------------------------
+//  Submissions are delivered straight to an inbox via Formspree.
 //
-//  To receive submissions straight to an inbox instead, create a free form at
-//  https://formspree.io, then paste the endpoint below and the form will POST
-//  to it automatically (no other changes needed).
+//  SETUP (one step):
+//    1. Create a free form at https://formspree.io (use Siasmakeup@hotmail.com).
+//    2. Paste the endpoint it gives you below  — e.g. "https://formspree.io/f/abcdwxyz".
+//       (Or, instead of editing code, set NEXT_PUBLIC_FORMSPREE_ENDPOINT in your
+//        Vercel project settings — either source works.)
+//
+//  Until an endpoint is set, the form gracefully falls back to opening the
+//  visitor's email client pre-filled to Siasmakeup@hotmail.com, so the site is
+//  always functional and deploys to Vercel with zero config.
 // ----------------------------------------------------------------------------
-const FORMSPREE_ENDPOINT = ""; // e.g. "https://formspree.io/f/abcdwxyz"
+const FORMSPREE_ENDPOINT =
+  process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ?? ""; // ← paste your Formspree endpoint here
 
 type Status = "idle" | "submitting" | "success";
 
@@ -146,6 +153,21 @@ export function Contact() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Formspree: nicer inbox subject + honeypot spam trap. */}
+              <input
+                type="hidden"
+                name="_subject"
+                value={`New ${eventType || "makeup"} enquiry — ${brand.name}`}
+              />
+              <input
+                type="text"
+                name="_gotcha"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+              />
+
               <div className="grid gap-6 sm:grid-cols-2">
                 <div>
                   <label htmlFor="name" className="eyebrow text-stone">

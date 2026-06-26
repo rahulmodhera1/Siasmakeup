@@ -84,13 +84,19 @@ build or deploy).
 
 ## Contact form
 
-By default the form opens the visitor's email client with all fields pre-filled
-(`mailto:` to `Siasmakeup@hotmail.com`) — works on Vercel with no backend.
+Enquiries are delivered to an inbox via [Formspree](https://formspree.io).
+**One-time setup:**
 
-To receive submissions in an inbox instead, create a free form at
-[formspree.io](https://formspree.io) and paste the endpoint into
-`FORMSPREE_ENDPOINT` at the top of `components/Contact.tsx`. The form will POST
-to it automatically; no other changes required.
+1. Create a free form at [formspree.io](https://formspree.io) (use
+   `Siasmakeup@hotmail.com` as the destination).
+2. Provide the endpoint it gives you (e.g. `https://formspree.io/f/abcdwxyz`)
+   in **either** place:
+   - paste it into `FORMSPREE_ENDPOINT` at the top of `components/Contact.tsx`, or
+   - set `NEXT_PUBLIC_FORMSPREE_ENDPOINT` in your Vercel project settings.
+
+Until an endpoint is set, the form gracefully falls back to opening the
+visitor's email client pre-filled to `Siasmakeup@hotmail.com`, so the site is
+always functional and still deploys to Vercel with zero config.
 
 ---
 
