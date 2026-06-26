@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="80" viewBox="0 0 320 80" role="img" aria-label="Sia's Makeup">
+  <rect width="320" height="80" fill="none"/>
+  <text x="0" y="38" font-family="Georgia, 'Cormorant Garamond', serif" font-size="34" letter-spacing="2" fill="#1A1917">SIA'S MAKEUP</text>
+  <text x="2" y="62" font-family="Arial, 'Inter', sans-serif" font-size="11" letter-spacing="6" fill="#9A8467">TORONTO · MAKEUP ARTIST</text>
+  <line x1="2" y1="48" x2="318" y2="48" stroke="#A56A4E" stroke-width="1"/>
+</svg>
