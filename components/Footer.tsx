@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Facebook, Instagram, Music2 } from "lucide-react";
 import { brand, navLinks } from "@/lib/content";
 
@@ -7,10 +8,16 @@ export function Footer() {
       <div className="mx-auto max-w-editorial px-6 py-16 md:px-10 md:py-20">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div>
-            <a href="#top" className="font-serif text-2xl tracking-wide text-bone">
-              {brand.wordmark}
+            <a href="#top" aria-label={`${brand.name} — back to top`} className="inline-block">
+              <Image
+                src="/images/brand/logo-bone.png"
+                alt={brand.name}
+                width={255}
+                height={224}
+                className="h-24 w-auto"
+              />
             </a>
-            <p className="mt-4 max-w-xs text-sm font-light leading-relaxed text-bone/60">
+            <p className="mt-5 max-w-xs text-sm font-light leading-relaxed text-bone/60">
               Freelance professional makeup artistry for bridal, fashion,
               photography and events — {brand.location}.
             </p>

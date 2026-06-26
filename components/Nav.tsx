@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { brand, navLinks } from "@/lib/content";
@@ -35,12 +36,30 @@ export function Nav() {
       <nav className="mx-auto flex h-16 max-w-editorial items-center justify-between px-6 md:h-20 md:px-10">
         <a
           href="#top"
-          className={`font-serif text-xl font-medium tracking-wide transition-colors duration-500 md:text-2xl ${
-            scrolled ? "text-ink" : "text-bone"
-          }`}
+          className="relative block h-9 w-[3.3rem] md:h-10 md:w-[3.7rem]"
           aria-label={`${brand.name} — back to top`}
         >
-          {brand.wordmark}
+          {/* Bone monogram over the hero, charcoal once the bar turns solid. */}
+          <Image
+            src="/images/brand/mark-bone.png"
+            alt={brand.name}
+            fill
+            priority
+            sizes="60px"
+            className={`object-contain transition-opacity duration-500 ${
+              scrolled ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          <Image
+            src="/images/brand/mark-charcoal.png"
+            alt=""
+            aria-hidden
+            fill
+            sizes="60px"
+            className={`object-contain transition-opacity duration-500 ${
+              scrolled ? "opacity-100" : "opacity-0"
+            }`}
+          />
         </a>
 
         {/* Desktop links */}
@@ -102,7 +121,13 @@ export function Nav() {
               transition={{ duration: 0.45, ease: [0.32, 0.72, 0, 1] }}
             >
               <div className="flex items-center justify-between">
-                <span className="font-serif text-xl text-ink">{brand.wordmark}</span>
+                <Image
+                  src="/images/brand/mark-charcoal.png"
+                  alt={brand.name}
+                  width={255}
+                  height={183}
+                  className="h-9 w-auto"
+                />
                 <button
                   type="button"
                   onClick={() => setOpen(false)}
