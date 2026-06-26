@@ -58,7 +58,7 @@ export function Nav() {
         </a>
 
         {/* Desktop links */}
-        <div className="hidden items-center gap-9 md:flex">
+        <div className="hidden items-center gap-6 lg:gap-8 md:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
