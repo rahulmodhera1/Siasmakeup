@@ -77,6 +77,20 @@
   }
 }
 
+/* Preloader bits — pure CSS so they paint before JS hydrates. */
+@keyframes loader-bar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.loader-bar {
+  transform-origin: left;
+  animation: loader-bar 1.6s var(--ease-out-expo) forwards;
+}
+
 /* Respect users who prefer reduced motion — disable all the slow reveals. */
 @media (prefers-reduced-motion: reduce) {
   html {

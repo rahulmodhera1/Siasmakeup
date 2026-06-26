@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { brand } from "@/lib/content";
+import { Preloader } from "@/components/Preloader";
 import "./globals.css";
 
 // Editorial, elegant serif for display/headings.
@@ -111,6 +112,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <Preloader />
         {children}
       </body>
     </html>

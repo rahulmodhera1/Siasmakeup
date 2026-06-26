@@ -69,7 +69,7 @@ export function Hero() {
         {ORBS.map((orb, i) => (
           <motion.div
             key={i}
-            className={`absolute rounded-full blur-[60px] ${orb.className}`}
+            className={`absolute rounded-full blur-[60px] will-change-transform ${orb.className}`}
             style={{ background: `radial-gradient(circle, ${orb.color}, transparent 68%)` }}
             animate={reduce ? {} : orb.anim}
             transition={{ duration: orb.duration, repeat: Infinity, ease: "easeInOut" }}
@@ -96,7 +96,7 @@ export function Hero() {
         {MOTES.map((m, i) => (
           <motion.span
             key={`m${i}`}
-            className="absolute bottom-0 rounded-full blur-[1.5px]"
+            className="absolute bottom-0 rounded-full blur-[1.5px] will-change-transform"
             style={{
               left: m.left,
               width: m.size,
