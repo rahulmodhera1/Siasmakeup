@@ -26,22 +26,22 @@ export const categories: { id: Category | "all"; label: string }[] = [
 
 export const gallery: GalleryImage[] = [
   // ---- Bridal (3 images) ----
-  { src: "/images/portfolio/bridal/Bridal 1.jpeg", category: "bridal", alt: "Soft glowing bridal makeup with a luminous skin finish" },
-  { src: "/images/portfolio/bridal/Bridal 2.jpeg", category: "bridal", alt: "Romantic bridal look with a neutral rose lip" },
-  { src: "/images/portfolio/bridal/Bridal 3.jpeg", category: "bridal", alt: "Timeless bridal eye with feathered lashes" },
+  { src: "/images/portfolio/bridal/bridal-1.jpeg", category: "bridal", alt: "Soft glowing bridal makeup with a luminous skin finish" },
+  { src: "/images/portfolio/bridal/bridal-2.jpeg", category: "bridal", alt: "Romantic bridal look with a neutral rose lip" },
+  { src: "/images/portfolio/bridal/bridal-3.jpeg", category: "bridal", alt: "Timeless bridal eye with feathered lashes" },
 
   // ---- Fashion (4 images) ----
-  { src: "/images/portfolio/fashion/Fashion 1.jpeg", category: "fashion", alt: "Editorial fashion beauty with a bold graphic eye" },
-  { src: "/images/portfolio/fashion/Fashion 2.jpeg", category: "fashion", alt: "High-fashion runway makeup with sculpted cheekbones" },
-  { src: "/images/portfolio/fashion/Fashion 3.jpeg", category: "fashion", alt: "Avant-garde beauty look with a metallic lid" },
-  { src: "/images/portfolio/fashion/Fashion 4.jpeg", category: "fashion", alt: "Minimalist fashion face with a clean, matte complexion" },
+  { src: "/images/portfolio/fashion/fashion-1.jpeg", category: "fashion", alt: "Editorial fashion beauty with a bold graphic eye" },
+  { src: "/images/portfolio/fashion/fashion-2.jpeg", category: "fashion", alt: "High-fashion runway makeup with sculpted cheekbones" },
+  { src: "/images/portfolio/fashion/fashion-3.jpeg", category: "fashion", alt: "Avant-garde beauty look with a metallic lid" },
+  { src: "/images/portfolio/fashion/fashion-4.jpeg", category: "fashion", alt: "Minimalist fashion face with a clean, matte complexion" },
 
   // ---- Photography (5 images) ----
-  { src: "/images/portfolio/photography/Photo 1.jpeg", category: "photography", alt: "Beauty close-up styled for studio photography" },
-  { src: "/images/portfolio/photography/Photo 2.jpeg", category: "photography", alt: "Camera-ready complexion for a portrait shoot" },
-  { src: "/images/portfolio/photography/Photo 3.jpeg", category: "photography", alt: "Soft editorial portrait makeup in warm light" },
-  { src: "/images/portfolio/photography/Photo 4.jpeg", category: "photography", alt: "Glowing skin styled for a magazine cover shoot" },
-  { src: "/images/portfolio/photography/Photo 5.jpeg", category: "photography", alt: "Defined beauty look built to hold up under studio lighting" },
+  { src: "/images/portfolio/photography/photo-1.jpeg", category: "photography", alt: "Beauty close-up styled for studio photography" },
+  { src: "/images/portfolio/photography/photo-2.jpeg", category: "photography", alt: "Camera-ready complexion for a portrait shoot" },
+  { src: "/images/portfolio/photography/photo-3.jpeg", category: "photography", alt: "Soft editorial portrait makeup in warm light" },
+  { src: "/images/portfolio/photography/photo-4.jpeg", category: "photography", alt: "Glowing skin styled for a magazine cover shoot" },
+  { src: "/images/portfolio/photography/photo-5.jpeg", category: "photography", alt: "Defined beauty look built to hold up under studio lighting" },
 
   // ---- Events (placeholders — no images uploaded yet) ----
   { src: "/images/portfolio/events/events-01.jpg", category: "events", alt: "Polished evening glam for a special event" },
