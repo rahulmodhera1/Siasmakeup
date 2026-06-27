@@ -166,22 +166,17 @@ export function Hero() {
           Toronto · Freelance Makeup Artist
         </motion.p>
 
-        {/* The WOW — Sia's actual logo, revealed with a mask wipe upward. */}
-        <motion.h1
-          className="mt-6"
-          initial={reduce ? { opacity: 0 } : { opacity: 0, y: 24, clipPath: "inset(100% 0 0 0)" }}
-          animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0, clipPath: "inset(0% 0 0 0)" }}
-          transition={{ duration: 1, ease: EASE, delay: 0.3 }}
-        >
-          <Image
-            src="/images/brand/logo-charcoal.png"
-            alt="Sia's Makeup"
-            width={255}
-            height={224}
-            priority
-            className="mx-auto h-auto w-56 sm:w-72 md:w-80 lg:w-[24rem]"
-          />
-        </motion.h1>
+        {/* The WOW — wordmark, revealed with a mask wipe upward. */}
+        <div className="mt-6 overflow-hidden pb-2">
+          <motion.h1
+            className="font-serif text-[3.5rem] font-semibold leading-[0.92] tracking-[-0.01em] text-ink sm:text-8xl lg:text-[9.5rem]"
+            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 30, clipPath: "inset(100% 0 0 0)" }}
+            animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0, clipPath: "inset(0% 0 0 0)" }}
+            transition={{ duration: 1, ease: EASE, delay: 0.3 }}
+          >
+            Sia&rsquo;s Makeup
+          </motion.h1>
+        </div>
 
         {/* Hairline clay rule drawing in beneath the wordmark. */}
         <motion.div
