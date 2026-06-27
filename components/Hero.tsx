@@ -169,7 +169,7 @@ export function Hero() {
         {/* The WOW — fancy high-contrast display serif, mask-wiped upward. */}
         <div className="mt-6 overflow-hidden pb-3">
           <motion.h1
-            className="font-wordmark text-6xl font-normal leading-[0.98] tracking-[0.01em] text-ink sm:text-7xl md:text-8xl lg:text-[8.5rem]"
+            className="font-wordmark text-5xl font-semibold leading-[1] tracking-[0] text-ink sm:text-7xl md:text-8xl lg:text-[8rem]"
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 30, clipPath: "inset(100% 0 0 0)" }}
             animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0, clipPath: "inset(0% 0 0 0)" }}
             transition={{ duration: 1, ease: EASE, delay: 0.3 }}
