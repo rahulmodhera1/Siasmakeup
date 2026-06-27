@@ -32,18 +32,28 @@ export function FallingLeaves() {
       return;
     }
     const wide = window.matchMedia("(min-width: 1024px)").matches;
-    const count = wide ? 16 : 7;
+    // Left band: 0–21%, right band: 79–100%. Leaves never enter the centre content zone.
+    const leftCount = wide ? 9 : 4;
+    const rightCount = wide ? 9 : 3;
+    const total = leftCount + rightCount;
     const arr: Leaf[] = [];
-    for (let i = 0; i < count; i++) {
-      // Desktop: spread evenly across the full width so the leaves never clump
-      // at the edges — they drift behind the centred text (z-10), never over it.
-      // Mobile (liked as-is): narrow left/right edge bands only.
+
+    for (let i = 0; i < total; i++) {
+      const isLeft = i < leftCount;
       let x: number;
       if (wide) {
-        x = ((i + 0.1 + Math.random() * 0.8) / count) * 100;
+        // Evenly slot each leaf within its band so none clump at a single x
+        if (isLeft) {
+          x = ((i + 0.15 + Math.random() * 0.7) / leftCount) * 21;
+        } else {
+          const j = i - leftCount;
+          x = 79 + ((j + 0.15 + Math.random() * 0.7) / rightCount) * 21;
+        }
       } else {
-        x = i % 2 === 0 ? Math.random() * 12 : 88 + Math.random() * 12;
+        x = isLeft ? Math.random() * 12 : 88 + Math.random() * 12;
       }
+
+      const duration = 16 + Math.random() * 10;
       arr.push({
         id: i,
         x,
@@ -54,10 +64,12 @@ export function FallingLeaves() {
         ],
         rotation: Math.random() * 360,
         scale: 0.5 + Math.random() * 0.75,
-        delay: Math.random() * 9,
-        duration: 16 + Math.random() * 10,
-        hue: 70 + Math.random() * 26, // olive → sage
-        sat: 15 + Math.random() * 12, // muted
+        // Spread initial delay across the full cycle so leaves are staggered in time,
+        // not bunched at startup.
+        delay: -(Math.random() * duration),
+        duration,
+        hue: 70 + Math.random() * 26,
+        sat: 15 + Math.random() * 12,
         light: 36 + Math.random() * 12,
       });
     }
