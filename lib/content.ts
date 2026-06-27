@@ -46,19 +46,19 @@ export const services: Service[] = [
   {
     title: "Bridal",
     blurb: "Timeless, photograph-ready beauty for the day you'll remember forever.",
-    image: "/images/portfolio/bridal/bridal-01.jpg",
+    image: "/images/portfolio/bridal/bridal-1.jpeg",
     category: "bridal",
   },
   {
     title: "Fashion",
     blurb: "Editorial and runway looks that translate a creative vision onto skin.",
-    image: "/images/portfolio/fashion/fashion-01.jpg",
+    image: "/images/portfolio/fashion/fashion-1.jpeg",
     category: "fashion",
   },
   {
     title: "Photography",
     blurb: "Camera-tested makeup engineered to hold up under any lighting.",
-    image: "/images/portfolio/photography/photography-01.jpg",
+    image: "/images/portfolio/photography/photo-1.jpeg",
     category: "photography",
   },
   {
