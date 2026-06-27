@@ -113,24 +113,35 @@ export function Hero() {
         ))}
       </div>
 
-      {/* Faint floating greenery sprigs in opposite corners. */}
+      {/* Faint floating greenery — calm, tucked toward the edges.
+          Bottom-left shows on every size; the others are desktop/tablet only so
+          they never crowd the centred text (or get clipped) on a phone. */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute -left-5 bottom-2 z-0 w-32 opacity-[0.62] md:w-44"
+        className="pointer-events-none absolute -left-4 bottom-0 z-0 w-28 opacity-[0.6] sm:w-32 md:w-44"
         animate={reduce ? {} : { rotate: [-2.5, 2.5, -2.5], y: [0, -9, 0] }}
         transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
         style={{ transformOrigin: "bottom center" }}
       >
-        <Image src="/images/hero/sprig.svg" alt="" width={220} height={320} className="h-auto w-full" />
+        <Image src="/images/hero/sprig.svg" alt="" width={200} height={340} className="h-auto w-full" />
       </motion.div>
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute -right-8 top-28 z-0 w-24 -scale-x-100 opacity-[0.45] md:w-32"
+        className="pointer-events-none absolute right-6 top-28 z-0 hidden w-24 -scale-x-100 opacity-[0.5] md:block lg:right-12 lg:w-28"
         animate={reduce ? {} : { rotate: [2, -2, 2], y: [0, 9, 0] }}
         transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
         style={{ transformOrigin: "top center" }}
       >
-        <Image src="/images/hero/sprig.svg" alt="" width={220} height={320} className="h-auto w-full" />
+        <Image src="/images/hero/sprig.svg" alt="" width={200} height={340} className="h-auto w-full" />
+      </motion.div>
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute left-6 top-1/3 z-0 hidden w-16 opacity-[0.3] lg:block lg:left-12 lg:w-20"
+        animate={reduce ? {} : { rotate: [1.5, -1.5, 1.5], y: [0, 7, 0] }}
+        transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+        style={{ transformOrigin: "top center" }}
+      >
+        <Image src="/images/hero/sprig.svg" alt="" width={200} height={340} className="h-auto w-full" />
       </motion.div>
 
       {/* ---------- Centered brand statement ---------- */}
