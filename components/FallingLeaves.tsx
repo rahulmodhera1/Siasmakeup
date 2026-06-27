@@ -31,12 +31,19 @@ export function FallingLeaves() {
       setLeaves([]);
       return;
     }
-    const count = window.matchMedia("(min-width: 1024px)").matches ? 14 : 7;
+    const wide = window.matchMedia("(min-width: 1024px)").matches;
+    const count = wide ? 16 : 7;
     const arr: Leaf[] = [];
     for (let i = 0; i < count; i++) {
-      const onLeft = i % 2 === 0;
-      // Narrow edge bands only — keep the centre completely clear.
-      const x = onLeft ? Math.random() * 12 : 88 + Math.random() * 12;
+      // Desktop: spread evenly across the full width so the leaves never clump
+      // at the edges — they drift behind the centred text (z-10), never over it.
+      // Mobile (liked as-is): narrow left/right edge bands only.
+      let x: number;
+      if (wide) {
+        x = ((i + 0.1 + Math.random() * 0.8) / count) * 100;
+      } else {
+        x = i % 2 === 0 ? Math.random() * 12 : 88 + Math.random() * 12;
+      }
       arr.push({
         id: i,
         x,
