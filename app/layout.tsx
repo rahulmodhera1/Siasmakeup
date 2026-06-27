@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bodoni_Moda, Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import { brand } from "@/lib/content";
 import { Preloader } from "@/components/Preloader";
 import "./globals.css";
@@ -9,15 +9,6 @@ const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
   variable: "--font-cormorant",
-  display: "swap",
-});
-
-// High-contrast Didone used only for the "Sia's Makeup" wordmark — matches the
-// elegant SM monogram in Sia's logo.
-const bodoni = Bodoni_Moda({
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-wordmark",
   display: "swap",
 });
 
@@ -115,7 +106,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${bodoni.variable} ${inter.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
       <body>
         <script
           type="application/ld+json"
