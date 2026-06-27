@@ -118,7 +118,7 @@ export function Hero() {
           the smallest screens so it never crowds the centred text. */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute left-0 bottom-0 z-0 w-40 opacity-[0.55] sm:w-48 md:w-60 lg:w-72"
+        className="pointer-events-none absolute left-0 bottom-0 z-0 hidden w-52 opacity-[0.5] xl:block 2xl:w-64"
         animate={reduce ? {} : { rotate: [-2, 2, -2], y: [0, -8, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         style={{ transformOrigin: "bottom center" }}
@@ -127,7 +127,7 @@ export function Hero() {
       </motion.div>
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute right-0 bottom-0 z-0 hidden w-36 -scale-x-100 opacity-[0.5] sm:block sm:w-44 md:w-56 lg:w-64"
+        className="pointer-events-none absolute right-0 bottom-0 z-0 hidden w-52 -scale-x-100 opacity-[0.45] xl:block 2xl:w-64"
         animate={reduce ? {} : { rotate: [2, -2, 2], y: [0, -8, 0] }}
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
         style={{ transformOrigin: "bottom center" }}
@@ -136,7 +136,7 @@ export function Hero() {
       </motion.div>
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute right-4 top-20 z-0 hidden w-24 -scale-x-100 opacity-[0.35] lg:block lg:right-10 lg:w-28"
+        className="pointer-events-none absolute right-4 top-20 z-0 hidden w-24 -scale-x-100 opacity-[0.35] xl:block xl:right-10 xl:w-28"
         animate={reduce ? {} : { rotate: [3, -1, 3], y: [0, 9, 0] }}
         transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
         style={{ transformOrigin: "top center" }}
