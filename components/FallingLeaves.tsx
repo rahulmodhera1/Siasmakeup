@@ -89,7 +89,8 @@ export function FallingLeaves() {
               `${leaf.x + leaf.drift[1]}vw`,
               `${leaf.x + leaf.drift[2]}vw`,
             ],
-            y: ["-12vh", "35vh", "75vh", "112vh"],
+            // Fade in at the very top of the hero and travel all the way down.
+            y: ["-6vh", "4vh", "100vh", "112vh"],
             rotate: [
               leaf.rotation,
               leaf.rotation + 120,
@@ -103,22 +104,35 @@ export function FallingLeaves() {
             duration: leaf.duration,
             delay: leaf.delay,
             repeat: Infinity,
-            ease: "easeInOut",
-            times: [0, 0.33, 0.66, 1],
+            ease: "linear",
+            times: [0, 0.08, 0.92, 1],
           }}
         >
-          <svg width="34" height="34" viewBox="0 0 40 40" fill="none">
+          <svg width="30" height="34" viewBox="0 0 40 46" fill="none">
+            {/* leaf body — pointed tip, rounded base */}
             <path
-              d="M20 2C20 2 8 8 8 20C8 28 12 35 20 38C28 35 32 28 32 20C32 8 20 2 20 2Z"
+              d="M20 2 C12 8 9 14 9 21 C9 28 13 32 20 34 C27 32 31 28 31 21 C31 14 28 8 20 2 Z"
               fill={`hsl(${leaf.hue}, ${leaf.sat}%, ${leaf.light}%)`}
               fillOpacity="0.55"
             />
-            <path
-              d="M20 4C20 4 14 11 14 20C14 26 16 32 20 38"
-              stroke={`hsl(${leaf.hue}, ${leaf.sat + 10}%, ${Math.max(0, leaf.light - 12)}%)`}
-              strokeWidth="1"
-              strokeOpacity="0.5"
-            />
+            {(() => {
+              const vein = `hsl(${leaf.hue}, ${leaf.sat + 10}%, ${Math.max(0, leaf.light - 14)}%)`;
+              return (
+                <>
+                  {/* central vein */}
+                  <path d="M20 4 L20 34" stroke={vein} strokeWidth="0.9" strokeOpacity="0.5" />
+                  {/* a couple of side veins */}
+                  <path
+                    d="M20 13 L13 11 M20 18 L27 17 M20 23 L13 23 M20 28 L26 28"
+                    stroke={vein}
+                    strokeWidth="0.7"
+                    strokeOpacity="0.4"
+                  />
+                  {/* stem */}
+                  <path d="M20 34 C20 38 20 41 20 44" stroke={vein} strokeWidth="1.2" strokeOpacity="0.6" />
+                </>
+              );
+            })()}
           </svg>
         </motion.div>
       ))}
