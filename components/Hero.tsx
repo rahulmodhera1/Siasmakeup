@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
@@ -50,6 +51,18 @@ const MOTES = [
 export function Hero() {
   const reduce = useReducedMotion();
 
+  // The drifting blur orbs + shimmer motes are GPU-heavy (animating large
+  // blurred layers). Run them on desktop only — on phones they made the whole
+  // page, including opening the menu, lag. Phones keep a clean static glow.
+  const [ambient, setAmbient] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const update = () => setAmbient(mq.matches && !reduce);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, [reduce]);
+
   const rise = (delay: number) =>
     reduce
       ? { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { duration: 0.4, delay: delay * 0.5 } }
@@ -66,15 +79,16 @@ export function Hero() {
     >
       {/* ---------- Living warm-light background ---------- */}
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
-        {ORBS.map((orb, i) => (
-          <motion.div
-            key={i}
-            className={`absolute rounded-full blur-[60px] will-change-transform ${orb.className}`}
-            style={{ background: `radial-gradient(circle, ${orb.color}, transparent 68%)` }}
-            animate={reduce ? {} : orb.anim}
-            transition={{ duration: orb.duration, repeat: Infinity, ease: "easeInOut" }}
-          />
-        ))}
+        {ambient &&
+          ORBS.map((orb, i) => (
+            <motion.div
+              key={i}
+              className={`absolute rounded-full blur-[60px] will-change-transform ${orb.className}`}
+              style={{ background: `radial-gradient(circle, ${orb.color}, transparent 68%)` }}
+              animate={orb.anim}
+              transition={{ duration: orb.duration, repeat: Infinity, ease: "easeInOut" }}
+            />
+          ))}
         {/* Steady warm wash from the top-right + soft lift from below. */}
         <div
           className="absolute inset-0"
@@ -92,25 +106,22 @@ export function Hero() {
           }}
         />
 
-        {/* Floating shimmer motes */}
-        {MOTES.map((m, i) => (
-          <motion.span
-            key={`m${i}`}
-            className="absolute bottom-0 rounded-full blur-[1.5px] will-change-transform"
-            style={{
-              left: m.left,
-              width: m.size,
-              height: m.size,
-              background: `radial-gradient(circle, rgba(${m.c},0.9), rgba(${m.c},0) 70%)`,
-            }}
-            animate={
-              reduce
-                ? { opacity: 0 }
-                : { y: [40, -760], x: [0, m.drift, 0], opacity: [0, 0.7, 0.7, 0], scale: [0.6, 1, 0.6] }
-            }
-            transition={{ duration: m.dur, delay: m.delay, repeat: Infinity, ease: "easeInOut" }}
-          />
-        ))}
+        {/* Floating shimmer motes — desktop only (see `ambient`). */}
+        {ambient &&
+          MOTES.map((m, i) => (
+            <motion.span
+              key={`m${i}`}
+              className="absolute bottom-0 rounded-full blur-[1.5px] will-change-transform"
+              style={{
+                left: m.left,
+                width: m.size,
+                height: m.size,
+                background: `radial-gradient(circle, rgba(${m.c},0.9), rgba(${m.c},0) 70%)`,
+              }}
+              animate={{ y: [40, -760], x: [0, m.drift, 0], opacity: [0, 0.7, 0.7, 0], scale: [0.6, 1, 0.6] }}
+              transition={{ duration: m.dur, delay: m.delay, repeat: Infinity, ease: "easeInOut" }}
+            />
+          ))}
       </div>
 
       {/* Eucalyptus greenery framing the lower corners — soft, elegant and
