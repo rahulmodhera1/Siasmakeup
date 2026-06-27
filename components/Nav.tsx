@@ -72,7 +72,7 @@ export function Nav() {
             href="#contact"
             className="rounded-full border border-clay px-5 py-2 text-xs uppercase tracking-eyebrow text-clay transition-all duration-500 ease-out-expo hover:bg-clay hover:text-bone"
           >
-            Enquire
+            Inquire
           </a>
         </div>
 
@@ -91,19 +91,21 @@ export function Nav() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-50 md:hidden"
+            className="fixed inset-0 z-[60] md:hidden"
             initial="closed"
             animate="open"
             exit="closed"
           >
             <motion.div
-              className="absolute inset-0 bg-ink/40"
+              className="absolute inset-0 bg-ink/50 backdrop-blur-sm"
               variants={{ open: { opacity: 1 }, closed: { opacity: 0 } }}
               transition={{ duration: 0.3 }}
               onClick={() => setOpen(false)}
             />
+            {/* Solid panel — no mix-blend grain here (iOS Safari renders it
+                see-through over transformed elements). */}
             <motion.div
-              className="grain absolute right-0 top-0 flex h-full w-4/5 max-w-sm flex-col bg-bone px-8 py-8"
+              className="absolute right-0 top-0 flex h-full w-[82%] max-w-sm flex-col bg-bone px-8 py-8 shadow-2xl shadow-ink/20"
               variants={{ open: { x: 0 }, closed: { x: "100%" } }}
               transition={{ duration: 0.45, ease: [0.32, 0.72, 0, 1] }}
             >
@@ -143,7 +145,7 @@ export function Nav() {
                 onClick={() => setOpen(false)}
                 className="mt-auto rounded-full border border-clay px-6 py-3 text-center text-xs uppercase tracking-eyebrow text-clay transition-colors hover:bg-clay hover:text-bone"
               >
-                Enquire
+                Inquire
               </a>
             </motion.div>
           </motion.div>

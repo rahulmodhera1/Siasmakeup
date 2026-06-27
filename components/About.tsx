@@ -2,13 +2,15 @@
 
 import { SmartImage } from "./SmartImage";
 import { Reveal } from "./Reveal";
+import { Sprig } from "./Sprig";
 
 const chips = ["Bridal", "Fashion", "Photography", "Events"];
 
 export function About() {
   return (
-    <section id="about" className="bg-bone py-24 md:py-32">
-      <div className="mx-auto grid max-w-editorial items-center gap-12 px-6 md:grid-cols-2 md:gap-20 md:px-10">
+    <section id="about" className="relative overflow-hidden bg-bone py-24 md:py-32">
+      <Sprig className="-right-10 top-10 w-24 opacity-25 md:w-32" />
+      <div className="relative z-10 mx-auto grid max-w-editorial items-center gap-12 px-6 md:grid-cols-2 md:gap-20 md:px-10">
         {/* Portrait */}
         <Reveal y={32} className="order-1 md:order-none">
           <div className="relative aspect-[4/5] w-full overflow-hidden">

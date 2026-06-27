@@ -168,25 +168,24 @@ export function Hero() {
           className="mt-7 font-serif text-2xl font-light italic text-charcoal md:text-3xl"
           {...rise(0.75)}
         >
-          Makeup that feels like you,{" "}
-          <span className="relative not-italic font-normal text-clay">
-            elevated
+          Toronto&rsquo;s brush for bridal, fashion{" "}
+          <span className="relative whitespace-nowrap not-italic font-normal text-sand">
+            &amp; beyond
             <motion.span
-              className="absolute -bottom-1 left-0 h-px w-full origin-left bg-clay"
+              className="absolute -bottom-1 left-0 h-px w-full origin-left bg-sand"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.7, ease: EASE, delay: reduce ? 0.35 : 1.05 }}
             />
           </span>
-          <span className="not-italic text-clay">.</span>
         </motion.p>
 
         <motion.p
           className="mt-6 max-w-xl text-base font-light leading-relaxed text-stone"
           {...rise(reduce ? 0.9 : 0.95)}
         >
-          Bridal, fashion, photography &amp; events — a refined, camera-tested
-          approach to beauty across Toronto &amp; the GTA.
+          A refined, camera-tested approach to beauty for bridal, fashion,
+          photography and events across Toronto and the GTA.
         </motion.p>
 
         <motion.div
@@ -203,7 +202,7 @@ export function Hero() {
             href="#contact"
             className="rounded-full border border-clay px-8 py-3.5 text-xs uppercase tracking-eyebrow text-clay transition-all duration-300 ease-out-expo hover:bg-clay hover:text-bone active:scale-[0.98]"
           >
-            Enquire
+            Inquire
           </a>
         </motion.div>
       </div>

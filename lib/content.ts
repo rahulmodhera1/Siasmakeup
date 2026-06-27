@@ -99,7 +99,7 @@ export const priceList: PriceCategory[] = [
   {
     id: "bridal",
     label: "Bridal",
-    subject: "Bridal enquiry",
+    subject: "Bridal inquiry",
     intro: "All services include false lashes.",
     blocks: [
       {
@@ -140,7 +140,7 @@ export const priceList: PriceCategory[] = [
   {
     id: "makeup",
     label: "Makeup Services",
-    subject: "Makeup services enquiry",
+    subject: "Makeup services inquiry",
     footnote: "Set prices apply with or without lashes · Travel fee TBD.",
     blocks: [
       {
@@ -185,7 +185,7 @@ export const priceList: PriceCategory[] = [
   {
     id: "mens",
     label: "Men's Grooming",
-    subject: "Men's grooming enquiry",
+    subject: "Men's grooming inquiry",
     footnote: "Travel + kit fee determined upon booking.",
     blocks: [
       {

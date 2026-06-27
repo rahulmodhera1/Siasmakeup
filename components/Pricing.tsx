@@ -146,7 +146,7 @@ export function Pricing() {
                 onClick={() => enquire(category.subject)}
                 className="mt-8 rounded-full border border-clay px-7 py-3 text-xs uppercase tracking-eyebrow text-clay transition-all duration-300 ease-out-expo hover:bg-clay hover:text-bone active:scale-[0.98]"
               >
-                Enquire about {category.label}
+                Inquire about {category.label}
               </button>
             </motion.div>
           </AnimatePresence>

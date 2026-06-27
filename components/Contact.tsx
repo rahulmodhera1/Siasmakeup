@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Facebook, Instagram, Mail, MapPin, Music2, Phone } from "lucide-react";
 import { Reveal } from "./Reveal";
+import { Sprig } from "./Sprig";
 import { brand, eventTypes } from "@/lib/content";
 
 // ----------------------------------------------------------------------------
@@ -72,7 +73,7 @@ export function Contact() {
 
     // --- Option B (default): mailto compose ---
     const subject = encodeURIComponent(
-      `${type ? type + " enquiry" : "Makeup enquiry"} — ${name || "New enquiry"}`
+      `${type ? type + " inquiry" : "Makeup inquiry"} — ${name || "New inquiry"}`
     );
     const body = encodeURIComponent(
       `Name: ${name}\nEmail: ${email}\nEvent type: ${type}\nDate: ${date}\n\n${message}`
@@ -85,8 +86,9 @@ export function Contact() {
     "w-full border-b border-stone/40 bg-transparent py-3 text-sm text-ink placeholder:text-stone/70 focus:border-clay focus:outline-none transition-colors";
 
   return (
-    <section id="contact" className="bg-bone py-24 md:py-32">
-      <div className="mx-auto grid max-w-editorial gap-14 px-6 md:grid-cols-[5fr_6fr] md:gap-20 md:px-10">
+    <section id="contact" className="relative overflow-hidden bg-bone py-24 md:py-32">
+      <Sprig className="-left-10 bottom-8 w-28 opacity-20 md:w-36" flip />
+      <div className="relative z-10 mx-auto grid max-w-editorial gap-14 px-6 md:grid-cols-[5fr_6fr] md:gap-20 md:px-10">
         {/* Left: invitation + direct details */}
         <div>
           <Reveal>
@@ -174,7 +176,7 @@ export function Contact() {
             <div className="grain flex h-full min-h-[20rem] flex-col items-center justify-center border border-stone/20 bg-concrete/40 p-10 text-center">
               <p className="font-serif text-3xl font-light text-ink">Thank you.</p>
               <p className="mt-4 max-w-sm text-sm font-light leading-relaxed text-charcoal/80">
-                Your enquiry is on its way to {brand.email}. I'll be in touch
+                Your inquiry is on its way to {brand.email}. I'll be in touch
                 personally, usually within a day or two.
               </p>
               <button
@@ -191,7 +193,7 @@ export function Contact() {
               <input
                 type="hidden"
                 name="_subject"
-                value={`New ${eventType || "makeup"} enquiry — ${brand.name}`}
+                value={`New ${eventType || "makeup"} inquiry — ${brand.name}`}
               />
               <input
                 type="text"
@@ -285,7 +287,7 @@ export function Contact() {
                 disabled={status === "submitting"}
                 className="w-full rounded-full bg-ink px-7 py-4 text-xs uppercase tracking-eyebrow text-bone transition-all duration-300 ease-out-expo hover:bg-clay active:scale-[0.99] disabled:opacity-60 sm:w-auto sm:px-12"
               >
-                {status === "submitting" ? "Sending…" : "Send Enquiry"}
+                {status === "submitting" ? "Sending…" : "Send Inquiry"}
               </button>
             </form>
           )}
