@@ -141,7 +141,7 @@ export function Hero() {
         {/* The WOW — wordmark, revealed with a mask wipe upward. */}
         <div className="mt-6 overflow-hidden pb-2">
           <motion.h1
-            className="font-serif text-[3.5rem] font-semibold leading-[0.92] tracking-[-0.01em] text-ink sm:text-8xl lg:text-[9.5rem]"
+            className="font-wordmark text-5xl font-normal leading-[1.02] tracking-[-0.01em] text-ink sm:text-7xl md:text-8xl lg:text-[8rem]"
             initial={reduce ? { opacity: 0 } : { opacity: 0, y: 30, clipPath: "inset(100% 0 0 0)" }}
             animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0, clipPath: "inset(0% 0 0 0)" }}
             transition={{ duration: 1, ease: EASE, delay: 0.3 }}

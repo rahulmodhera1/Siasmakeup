@@ -123,7 +123,7 @@ export function Nav() {
                 className="object-contain"
               />
             </span>
-            <span className="font-serif text-xl font-medium tracking-wide text-ink md:text-2xl">
+            <span className="font-wordmark text-lg font-normal tracking-wide text-ink md:text-xl">
               {brand.name}
             </span>
           </a>

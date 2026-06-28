@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter, Prata } from "next/font/google";
 import { brand } from "@/lib/content";
 import { Preloader } from "@/components/Preloader";
 import "./globals.css";
@@ -9,6 +9,15 @@ const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
   variable: "--font-cormorant",
+  display: "swap",
+});
+
+// Elegant high-contrast Didone for the "Sia's Makeup" wordmark only —
+// echoes the look of the SM monogram in Sia's logo.
+const prata = Prata({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-wordmark",
   display: "swap",
 });
 
@@ -106,7 +115,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${prata.variable} ${inter.variable}`}>
       <body>
         <script
           type="application/ld+json"
