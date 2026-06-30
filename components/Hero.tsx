@@ -1,51 +1,9 @@
 "use client";
 
-import { useReducedMotion } from "framer-motion";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
 const EASE = [0.23, 1, 0.32, 1] as const;
-
-// The real foliage cut-outs (transparent PNGs matted from Sia's photos),
-// placed in the corners like the reference. Each sways gently on its own.
-const FOLIAGE = [
-  {
-    src: "/images/hero/euc-cut.png",
-    // top-left eucalyptus
-    className:
-      "absolute left-[1%] top-[9%] h-[15vh] w-auto sm:top-[7%] sm:h-[20vh] md:h-[24vh]",
-    origin: "0% 0%",
-    flip: false,
-    sway: [0, 1.4, 0, -1.1, 0],
-    duration: 13,
-    delay: 0,
-    opacity: "opacity-90",
-  },
-  {
-    src: "/images/hero/olive-cut.png",
-    // top-right olive branch (mirrored to drape inward)
-    className:
-      "absolute right-[1%] top-[6%] h-[22vh] w-auto sm:h-[30vh] md:h-[36vh]",
-    origin: "100% 0%",
-    flip: true,
-    sway: [0, -1.3, 0, 1, 0],
-    duration: 16,
-    delay: 1.2,
-    opacity: "opacity-85",
-  },
-  {
-    src: "/images/hero/fern-cut.png",
-    // bottom-left fern frond
-    className:
-      "absolute -left-2 bottom-[-2%] h-[14vh] w-auto sm:h-[18vh] md:h-[22vh]",
-    origin: "0% 100%",
-    flip: false,
-    sway: [0, 1.7, 0, -1.2, 0],
-    duration: 11,
-    delay: 0.6,
-    opacity: "opacity-85",
-  },
-];
 
 
 export function Hero() {
@@ -76,39 +34,6 @@ export function Hero() {
       />
       {/* Soft bone wash so text stays legible against the photo */}
       <div className="pointer-events-none absolute inset-0 z-0 bg-bone/55" />
-
-      {/* ---------- Real foliage framing — gently swaying ---------- */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-[1] overflow-hidden">
-        {FOLIAGE.map((f) => (
-          <div
-            key={f.src}
-            className={f.className}
-            style={{ transformOrigin: f.origin, transform: f.flip ? "scaleX(-1)" : undefined }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <motion.img
-              src={f.src}
-              alt=""
-              draggable={false}
-              className={`h-full w-auto select-none blur-[1px] ${f.opacity}`}
-              style={{ transformOrigin: f.origin }}
-              animate={reduce ? {} : { rotate: f.sway }}
-              transition={{ duration: f.duration, delay: f.delay, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </div>
-        ))}
-
-        {/* A single soft sparkle on the right, like the reference. */}
-        <motion.svg
-          className="absolute right-[7%] top-[60%] hidden h-5 w-5 text-sand sm:block"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          animate={reduce ? {} : { opacity: [0.25, 0.75, 0.25], scale: [0.82, 1, 0.82] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <path d="M12 0 C12.7 7 17 11.3 24 12 C17 12.7 12.7 17 12 24 C11.3 17 7 12.7 0 12 C7 11.3 11.3 7 12 0 Z" />
-        </motion.svg>
-      </div>
 
       {/* ---------- Centered brand statement ---------- */}
       <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
