@@ -12,17 +12,14 @@ export function Testimonials() {
           <p className="eyebrow">Kind Words</p>
         </Reveal>
 
-        <Stagger className="mt-12 grid gap-12 md:grid-cols-3 md:gap-10" gap={0.12}>
+        <Stagger className="mt-12 grid gap-12 sm:grid-cols-2 lg:grid-cols-4 md:gap-10" gap={0.12}>
           {testimonials.map((t) => (
-            <motion.figure key={t.author} variants={staggerItem} className="text-center">
-              <blockquote className="font-serif text-2xl font-light leading-snug text-ink/90 md:text-[1.7rem]">
+            <motion.figure key={t.quote} variants={staggerItem} className="text-center">
+              <blockquote className="font-serif text-xl font-light leading-snug text-ink/90 md:text-2xl">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
               <figcaption className="mt-6">
                 <p className="text-sm font-medium text-ink">{t.author}</p>
-                <p className="mt-1 text-xs uppercase tracking-eyebrow text-bronze">
-                  {t.role}
-                </p>
               </figcaption>
             </motion.figure>
           ))}

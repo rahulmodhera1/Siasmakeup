@@ -235,27 +235,27 @@ export type Testimonial = {
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "The excitement about the work really showed — and so did the results. The makeup lasted all day from 12:30 to 9 pm in the summer heat, and it was perfectly tailored to my skin. Black girl approved! The vibes were incredible.",
+      "The excitement about the work really showed — and so did the results. The makeup lasted all day from 12:30 to 9 pm in the summer heat, and it was perfectly tailored to my skin. Black girl approved!",
     author: "Verified Client",
-    role: "Full Face Makeup · Fresha",
+    role: "",
   },
   {
     quote:
-      "Thank you so much for everything on the day. You did an amazing job — all of us looked absolutely gorgeous and stunning. We all loved you; you were so funny and extremely attentive.",
+      "You did an amazing job — all of us looked absolutely gorgeous and stunning. You were so funny and extremely attentive.",
     author: "Verified Client",
-    role: "Verified Review · Fresha",
+    role: "",
   },
   {
     quote:
-      "You made me feel more confident in myself today than I ever have in my life, and I truly appreciate it. You have such a warm heart — thank you again.",
+      "You made me feel more confident in myself today than I ever have in my life. You have such a warm heart — thank you.",
     author: "Verified Client",
-    role: "Verified Review · Fresha",
+    role: "",
   },
   {
     quote:
       "Loved my eye makeup for a wedding event — absolutely beautiful work!",
     author: "Verified Client",
-    role: "Eye Makeup · Fresha",
+    role: "",
   },
 ];
 
