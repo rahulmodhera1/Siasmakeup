@@ -1,10 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
 const EASE = [0.23, 1, 0.32, 1] as const;
-
 
 export function Hero() {
   const reduce = useReducedMotion();
@@ -21,19 +21,27 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="grain relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden px-6 pt-24 pb-16"
+      className="grain relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-bone px-6 pt-24 pb-16"
     >
-      {/* ---------- Hero background image ---------- */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/images/hero/wmremove-transformed.png"
-        alt=""
-        aria-hidden
-        draggable={false}
-        className="pointer-events-none absolute inset-0 z-0 h-full w-full select-none object-cover"
-      />
-      {/* Soft bone wash so text stays legible against the photo */}
-      <div className="pointer-events-none absolute inset-0 z-0 bg-bone/55" />
+      {/* ---------- Photographic foliage background ---------- */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
+        <Image
+          src="/images/hero/wmremove-transformed.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        {/* Whisper-soft cream scrim to keep the centred text crisp. */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(60% 55% at 50% 50%, rgba(244,241,236,0.45), transparent 75%)",
+          }}
+        />
+      </div>
 
       {/* ---------- Centered brand statement ---------- */}
       <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">

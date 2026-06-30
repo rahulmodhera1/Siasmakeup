@@ -232,25 +232,30 @@ export type Testimonial = {
   role: string;
 };
 
-// Placeholder quotes. // TODO: Sia to replace with real client testimonials.
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "Sia made me feel completely like myself on my wedding day — just the most radiant version. It lasted from the first look to the last dance.",
-    author: "Amara K.",
-    role: "Bride · Toronto",
+      "The excitement about the work really showed — and so did the results. The makeup lasted all day from 12:30 to 9 pm in the summer heat, and it was perfectly tailored to my skin. Black girl approved! The vibes were incredible.",
+    author: "Verified Client",
+    role: "Full Face Makeup · Fresha",
   },
   {
     quote:
-      "An absolute professional on set. Calm, fast, and the skin she creates reads beautifully on camera. Our whole team rebooked her.",
-    author: "Devon R.",
-    role: "Fashion Photographer",
+      "Thank you so much for everything on the day. You did an amazing job — all of us looked absolutely gorgeous and stunning. We all loved you; you were so funny and extremely attentive.",
+    author: "Verified Client",
+    role: "Verified Review · Fresha",
   },
   {
     quote:
-      "She listened, then elevated. Exactly the look I described, but better than I imagined. I won't go to anyone else for events.",
-    author: "Priya S.",
-    role: "Repeat Client",
+      "You made me feel more confident in myself today than I ever have in my life, and I truly appreciate it. You have such a warm heart — thank you again.",
+    author: "Verified Client",
+    role: "Verified Review · Fresha",
+  },
+  {
+    quote:
+      "Loved my eye makeup for a wedding event — absolutely beautiful work!",
+    author: "Verified Client",
+    role: "Eye Makeup · Fresha",
   },
 ];
 
