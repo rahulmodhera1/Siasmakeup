@@ -14,8 +14,8 @@ export function Testimonials() {
 
         <Stagger className="mt-12 grid gap-12 sm:grid-cols-2 lg:grid-cols-4 md:gap-10" gap={0.12}>
           {testimonials.map((t) => (
-            <motion.figure key={t.quote} variants={staggerItem} className="text-center">
-              <blockquote className="font-serif text-xl font-light leading-snug text-ink/90 md:text-2xl">
+            <motion.figure key={t.quote} variants={staggerItem} className="flex flex-col text-center">
+              <blockquote className="flex-1 font-serif text-xl font-light leading-snug text-ink/90 md:text-2xl">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>
               <figcaption className="mt-6">
