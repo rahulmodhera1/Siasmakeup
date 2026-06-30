@@ -1,47 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
 const EASE = [0.23, 1, 0.32, 1] as const;
-
-// Slow, drifting pools of warm light in Sia's palette — keeps the bone hero
-// alive without any photography. Low opacity so it stays elegant, never garish.
-const ORBS = [
-  {
-    color: "rgba(203,166,124,0.45)", // warm sand
-    className: "-left-[12%] top-[2%] h-[60vw] w-[60vw] md:h-[42vw] md:w-[42vw]",
-    anim: { x: [0, 50, 0], y: [0, 36, 0], scale: [1, 1.12, 1] },
-    duration: 19,
-  },
-  {
-    color: "rgba(165,106,78,0.20)", // clay
-    className: "right-[-10%] top-[12%] h-[55vw] w-[55vw] md:h-[40vw] md:w-[40vw]",
-    anim: { x: [0, -44, 0], y: [0, 40, 0], scale: [1.08, 1, 1.08] },
-    duration: 23,
-  },
-  {
-    color: "rgba(124,128,96,0.26)", // sage — a touch more green
-    className: "bottom-[-12%] left-[14%] h-[60vw] w-[60vw] md:h-[40vw] md:w-[40vw]",
-    anim: { x: [0, 40, 0], y: [0, -34, 0], scale: [1, 1.14, 1] },
-    duration: 26,
-  },
-  {
-    color: "rgba(154,132,103,0.22)", // bronze
-    className: "bottom-[2%] right-[6%] h-[46vw] w-[46vw] md:h-[32vw] md:w-[32vw]",
-    anim: { x: [0, -32, 0], y: [0, -28, 0], scale: [1.06, 1, 1.06] },
-    duration: 21,
-  },
-];
-
-// Soft, out-of-focus pools of warm taupe light — the "dappled light through
-// leaves" mood from the reference. Static for depth, drifted on desktop.
-const DAPPLE =
-  "radial-gradient(30% 30% at 18% 26%, rgba(201,192,178,0.50), transparent 70%)," +
-  "radial-gradient(26% 26% at 78% 20%, rgba(168,159,144,0.42), transparent 72%)," +
-  "radial-gradient(34% 32% at 84% 74%, rgba(201,192,178,0.44), transparent 70%)," +
-  "radial-gradient(26% 26% at 32% 82%, rgba(168,159,144,0.34), transparent 72%)";
 
 // The real foliage cut-outs (transparent PNGs matted from Sia's photos),
 // placed in the corners like the reference. Each sways gently on its own.
@@ -84,32 +47,9 @@ const FOLIAGE = [
   },
 ];
 
-// Soft shimmer motes drifting upward — a quiet "glow / highlighter" touch that
-// gives the hero a makeup-artist feel. Deterministic so SSR stays stable.
-const MOTES = [
-  { left: "16%", size: 6, dur: 13, delay: 0, drift: 16, c: "203,166,124" },
-  { left: "29%", size: 4, dur: 16, delay: 3.5, drift: -12, c: "154,132,103" },
-  { left: "43%", size: 7, dur: 14, delay: 1.5, drift: 10, c: "244,241,236" },
-  { left: "57%", size: 5, dur: 17, delay: 5, drift: -14, c: "203,166,124" },
-  { left: "68%", size: 6, dur: 15, delay: 2.5, drift: 12, c: "154,132,103" },
-  { left: "81%", size: 4, dur: 18, delay: 6.5, drift: -9, c: "244,241,236" },
-  { left: "90%", size: 5, dur: 14, delay: 4, drift: 11, c: "203,166,124" },
-];
 
 export function Hero() {
   const reduce = useReducedMotion();
-
-  // The drifting blur orbs + shimmer motes are GPU-heavy (animating large
-  // blurred layers). Run them on desktop only — on phones they made the whole
-  // page, including opening the menu, lag. Phones keep a clean static glow.
-  const [ambient, setAmbient] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    const update = () => setAmbient(mq.matches && !reduce);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, [reduce]);
 
   const rise = (delay: number) =>
     reduce
@@ -123,67 +63,19 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="grain relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-bone px-6 pt-24 pb-16"
+      className="grain relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden px-6 pt-24 pb-16"
     >
-      {/* ---------- Living warm-light background ---------- */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
-        {ambient &&
-          ORBS.map((orb, i) => (
-            <motion.div
-              key={i}
-              className={`absolute rounded-full blur-[60px] will-change-transform ${orb.className}`}
-              style={{ background: `radial-gradient(circle, ${orb.color}, transparent 68%)` }}
-              animate={orb.anim}
-              transition={{ duration: orb.duration, repeat: Infinity, ease: "easeInOut" }}
-            />
-          ))}
-        {/* Steady warm wash from the top-right + soft lift from below. */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(55% 50% at 85% 6%, rgba(203,166,124,0.30), transparent 70%), radial-gradient(45% 45% at 12% 96%, rgba(244,241,236,0.6), transparent 75%)",
-          }}
-        />
-        {/* A whisper of green pooled in the lower-left, near the sprig. */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(34% 34% at 6% 92%, rgba(124,128,96,0.22), transparent 70%)",
-          }}
-        />
-
-        {/* Dappled taupe light — soft out-of-focus depth (always on). */}
-        <div className="absolute inset-0" style={{ background: DAPPLE }} />
-
-        {/* Same dapple, drifting slowly — the cinematic light shift (desktop). */}
-        {ambient && (
-          <motion.div
-            className="absolute -inset-[12%] will-change-transform"
-            style={{ background: DAPPLE }}
-            animate={{ x: [0, 26, 0, -20, 0], y: [0, -18, 0, 16, 0], scale: [1, 1.05, 1] }}
-            transition={{ duration: 32, repeat: Infinity, ease: "easeInOut" }}
-          />
-        )}
-
-        {/* Floating shimmer motes — desktop only (see `ambient`). */}
-        {ambient &&
-          MOTES.map((m, i) => (
-            <motion.span
-              key={`m${i}`}
-              className="absolute bottom-0 rounded-full blur-[1.5px] will-change-transform"
-              style={{
-                left: m.left,
-                width: m.size,
-                height: m.size,
-                background: `radial-gradient(circle, rgba(${m.c},0.9), rgba(${m.c},0) 70%)`,
-              }}
-              animate={{ y: [40, -760], x: [0, m.drift, 0], opacity: [0, 0.7, 0.7, 0], scale: [0.6, 1, 0.6] }}
-              transition={{ duration: m.dur, delay: m.delay, repeat: Infinity, ease: "easeInOut" }}
-            />
-          ))}
-      </div>
+      {/* ---------- Hero background image ---------- */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/images/hero/wmremove-transformed.png"
+        alt=""
+        aria-hidden
+        draggable={false}
+        className="pointer-events-none absolute inset-0 z-0 h-full w-full select-none object-cover"
+      />
+      {/* Soft bone wash so text stays legible against the photo */}
+      <div className="pointer-events-none absolute inset-0 z-0 bg-bone/55" />
 
       {/* ---------- Real foliage framing — gently swaying ---------- */}
       <div aria-hidden className="pointer-events-none absolute inset-0 z-[1] overflow-hidden">
