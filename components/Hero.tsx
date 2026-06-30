@@ -96,13 +96,31 @@ export function Hero() {
               "radial-gradient(55% 50% at 85% 6%, rgba(203,166,124,0.30), transparent 70%), radial-gradient(45% 45% at 12% 96%, rgba(244,241,236,0.6), transparent 75%)",
           }}
         />
-        {/* A whisper of green pooled in the lower-left, near the sprig. */}
+        {/* A whisper of green pooled in the lower-left, near the botanical. */}
         <div
           className="absolute inset-0"
           style={{
             background:
               "radial-gradient(34% 34% at 6% 92%, rgba(124,128,96,0.22), transparent 70%)",
           }}
+        />
+
+        {/* Botanical branch — left edge */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/hero/botanical-left.svg"
+          alt=""
+          draggable={false}
+          className="absolute bottom-0 left-0 h-[80%] w-auto select-none opacity-70 sm:h-[88%]"
+        />
+        {/* Botanical branch — right edge (mirrored) */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/hero/botanical-left.svg"
+          alt=""
+          draggable={false}
+          className="absolute bottom-0 right-0 h-[62%] w-auto select-none opacity-50 sm:h-[72%]"
+          style={{ transform: "scaleX(-1)" }}
         />
 
         {/* Floating shimmer motes — desktop only (see `ambient`). */}
