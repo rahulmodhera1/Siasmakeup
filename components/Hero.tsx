@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import { FallingLeaves } from "./FallingLeaves";
 
 const EASE = [0.23, 1, 0.32, 1] as const;
 
@@ -123,9 +122,6 @@ export function Hero() {
             />
           ))}
       </div>
-
-      {/* Soft sage leaves drifting down the left & right edges only. */}
-      <FallingLeaves />
 
       {/* ---------- Centered brand statement ---------- */}
       <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
