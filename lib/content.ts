@@ -56,7 +56,7 @@ export const services: Service[] = [
     blurb: "Editorial and runway looks that translate a creative vision onto skin.",
     image: "/images/portfolio/fashion/Forbidden Desire 1.jpeg",
     category: "fashion",
-    imagePosition: "50% 8%",
+    imagePosition: "50% 0%",
   },
   {
     title: "Photography",
