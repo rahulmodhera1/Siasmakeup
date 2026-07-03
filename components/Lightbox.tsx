@@ -107,12 +107,12 @@ export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) 
                   {current.category}
                 </p>
                 <div className="mx-auto mt-3 h-px w-10 bg-bone/25" />
-                <p className="mx-auto mt-3 max-w-lg text-[0.7rem] font-light leading-relaxed tracking-[0.08em] text-bone/60">
+                <p className="mx-auto mt-3 max-w-xl text-[0.7rem] font-light leading-relaxed tracking-[0.08em] text-bone/60">
                   {current.collection.credits.map((c, i) => (
                     <span key={c.role} className="whitespace-nowrap">
                       {i > 0 && <span className="mx-2 text-bone/30">·</span>}
                       <span className="uppercase tracking-[0.18em] text-bone/45">{c.role}</span>{" "}
-                      <span className="text-bone/75">{c.name}</span>
+                      <span className="text-bone/75">{c.lines.join(" ")}</span>
                     </span>
                   ))}
                 </p>

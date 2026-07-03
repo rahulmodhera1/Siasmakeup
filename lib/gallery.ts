@@ -12,7 +12,8 @@ export type Category = "bridal" | "fashion" | "photography" | "events";
 
 export type Credit = {
   role: string;
-  name: string;
+  /** Each line renders whole on its own row — names never break mid-word. */
+  lines: string[];
 };
 
 export type Collection = {
@@ -40,10 +41,10 @@ export const categories: { id: Category | "all"; label: string }[] = [
 export const forbiddenDesire: Collection = {
   title: "Forbidden Desire",
   credits: [
-    { role: "Makeup", name: "Sia · @Siasmakeup" },
-    { role: "Photography", name: "Larissa Scisci · @s.cisci" },
-    { role: "Models", name: "@nadianotnice · @destineecray" },
-    { role: "Designer", name: "Jair Castillo · @j.castillo_____" },
+    { role: "Makeup", lines: ["Sia", "@Siasmakeup"] },
+    { role: "Photography", lines: ["Larissa Scisci", "@s.cisci"] },
+    { role: "Models", lines: ["@nadianotnice", "@destineecray"] },
+    { role: "Designer", lines: ["Jair Castillo", "@j.castillo_____"] },
   ],
 };
 

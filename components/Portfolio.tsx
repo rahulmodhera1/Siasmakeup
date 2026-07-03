@@ -69,19 +69,19 @@ export function Portfolio() {
                 {forbiddenDesire.title}
               </h3>
               <div className="mx-auto mt-5 h-px w-12 bg-clay/60" />
-              <div className="mx-auto mt-5 flex max-w-3xl flex-col items-center gap-2.5 sm:flex-row sm:justify-center sm:gap-0">
-                {forbiddenDesire.credits.map((c, i) => (
-                  <span key={c.role} className="flex items-center font-light text-charcoal/80">
-                    {i > 0 && (
-                      <span aria-hidden className="mx-5 hidden h-4 w-px bg-stone/40 sm:block" />
-                    )}
-                    <span>
-                      <span className="mr-2.5 text-xs uppercase tracking-[0.2em] text-bronze">
-                        {c.role}
-                      </span>
-                      <span className="font-serif text-xl italic text-ink/85">{c.name}</span>
-                    </span>
-                  </span>
+              <div className="mx-auto mt-7 grid max-w-4xl grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4">
+                {forbiddenDesire.credits.map((c) => (
+                  <div key={c.role} className="text-center">
+                    <p className="text-xs uppercase tracking-[0.2em] text-bronze">{c.role}</p>
+                    {c.lines.map((line) => (
+                      <p
+                        key={line}
+                        className="mt-1.5 whitespace-nowrap font-serif text-lg italic leading-snug text-ink/85 md:text-xl"
+                      >
+                        {line}
+                      </p>
+                    ))}
+                  </div>
                 ))}
               </div>
             </motion.div>
