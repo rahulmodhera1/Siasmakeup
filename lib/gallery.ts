@@ -40,6 +40,7 @@ export const categories: { id: Category | "all"; label: string }[] = [
 export const forbiddenDesire: Collection = {
   title: "Forbidden Desire",
   credits: [
+    { role: "Makeup", name: "Sia · @Siasmakeup" },
     { role: "Photography", name: "Larissa Scisci · @s.cisci" },
     { role: "Models", name: "@nadianotnice · @destineecray" },
     { role: "Designer", name: "Jair Castillo · @j.castillo_____" },
