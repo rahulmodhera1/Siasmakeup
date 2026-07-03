@@ -40,25 +40,28 @@ export type Service = {
   blurb: string;
   image: string;
   category: Category;
+  /** Optional CSS object-position for the card crop (e.g. focus on the face). */
+  imagePosition?: string;
 };
 
 export const services: Service[] = [
   {
     title: "Bridal",
     blurb: "Timeless, photograph-ready beauty for the day you'll remember forever.",
-    image: "/images/portfolio/bridal/bridal-1.jpeg",
+    image: "/images/portfolio/bridal/bridal-3.jpeg",
     category: "bridal",
   },
   {
     title: "Fashion",
     blurb: "Editorial and runway looks that translate a creative vision onto skin.",
-    image: "/images/portfolio/fashion/fashion-1.jpeg",
+    image: "/images/portfolio/fashion/Forbidden Desire 1.jpeg",
     category: "fashion",
+    imagePosition: "50% 22%",
   },
   {
     title: "Photography",
     blurb: "Camera-tested makeup engineered to hold up under any lighting.",
-    image: "/images/portfolio/photography/photo-1.jpeg",
+    image: "/images/portfolio/photography/photo-2.jpeg",
     category: "photography",
   },
   {

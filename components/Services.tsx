@@ -36,6 +36,7 @@ export function Services() {
                   fill
                   sizes="(max-width: 640px) 100vw, 50vw"
                   className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
+                  style={service.imagePosition ? { objectPosition: service.imagePosition } : undefined}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </div>

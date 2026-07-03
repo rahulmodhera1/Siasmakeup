@@ -10,10 +10,21 @@
 
 export type Category = "bridal" | "fashion" | "photography" | "events";
 
+export type Credit = {
+  role: string;
+  name: string;
+};
+
+export type Collection = {
+  title: string;
+  credits: Credit[];
+};
+
 export type GalleryImage = {
   src: string;
   category: Category;
   alt: string;
+  collection?: Collection;
 };
 
 export const categories: { id: Category | "all"; label: string }[] = [
@@ -24,24 +35,40 @@ export const categories: { id: Category | "all"; label: string }[] = [
   { id: "events", label: "Events" },
 ];
 
+// ---- Collections ----------------------------------------------------------
+// A collection groups editorial images under one title and shared credits.
+export const forbiddenDesire: Collection = {
+  title: "Forbidden Desire",
+  credits: [
+    { role: "Photography", name: "Larissa Scisci · @s.cisci" },
+    { role: "Models", name: "@nadianotnice · @destineecray" },
+    { role: "Designer", name: "Jair Castillo · @j.castillo_____" },
+  ],
+};
+
+const fd = (n: number, alt: string): GalleryImage => ({
+  src: `/images/portfolio/fashion/Forbidden Desire ${n}.jpeg`,
+  category: "fashion",
+  alt,
+  collection: forbiddenDesire,
+});
+
 export const gallery: GalleryImage[] = [
-  // ---- Bridal (3 images) ----
-  { src: "/images/portfolio/bridal/bridal-1.jpeg", category: "bridal", alt: "Soft glowing bridal makeup with a luminous skin finish" },
-  { src: "/images/portfolio/bridal/bridal-2.jpeg", category: "bridal", alt: "Romantic bridal look with a neutral rose lip" },
+  // ---- Bridal ----
   { src: "/images/portfolio/bridal/bridal-3.jpeg", category: "bridal", alt: "Timeless bridal eye with feathered lashes" },
 
-  // ---- Fashion (4 images) ----
-  { src: "/images/portfolio/fashion/fashion-1.jpeg", category: "fashion", alt: "Editorial fashion beauty with a bold graphic eye" },
-  { src: "/images/portfolio/fashion/fashion-2.jpeg", category: "fashion", alt: "High-fashion runway makeup with sculpted cheekbones" },
-  { src: "/images/portfolio/fashion/fashion-3.jpeg", category: "fashion", alt: "Avant-garde beauty look with a metallic lid" },
-  { src: "/images/portfolio/fashion/fashion-4.jpeg", category: "fashion", alt: "Minimalist fashion face with a clean, matte complexion" },
+  // ---- Fashion · Forbidden Desire ----
+  fd(1, "Model in a sculptural black dress emerging from shadow, editorial makeup by Sia"),
+  fd(2, "Dramatic chiaroscuro portrait with a padded wrap collar and soft-focus glam"),
+  fd(3, "Full-length look in a voluminous quilted coat, lit by a single beam of light"),
+  fd(4, "Profile study in draped black with a slicked-back ponytail and graphic liner"),
+  fd(5, "Draped satin silhouette with luminous skin and a sharp winged eye"),
+  fd(6, "Off-the-shoulder leather bodice with a smoked-out graphic cat eye"),
+  fd(7, "Mini dress and boots, strong brow and bold lash in low dramatic light"),
+  fd(8, "Wide-leg tailoring and sculpted matte complexion against the dark"),
 
-  // ---- Photography (5 images) ----
-  { src: "/images/portfolio/photography/photo-1.jpeg", category: "photography", alt: "Beauty close-up styled for studio photography" },
+  // ---- Photography ----
   { src: "/images/portfolio/photography/photo-2.jpeg", category: "photography", alt: "Camera-ready complexion for a portrait shoot" },
-  { src: "/images/portfolio/photography/photo-3.jpeg", category: "photography", alt: "Soft editorial portrait makeup in warm light" },
-  { src: "/images/portfolio/photography/photo-4.jpeg", category: "photography", alt: "Glowing skin styled for a magazine cover shoot" },
-  { src: "/images/portfolio/photography/photo-5.jpeg", category: "photography", alt: "Defined beauty look built to hold up under studio lighting" },
 
   // ---- Events (placeholders — no images uploaded yet) ----
   { src: "/images/portfolio/events/events-01.jpg", category: "events", alt: "Polished evening glam for a special event" },

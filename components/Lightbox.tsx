@@ -98,9 +98,30 @@ export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) 
                 className="object-contain"
               />
             </div>
-            <p className="mt-3 text-center text-xs uppercase tracking-eyebrow text-bone/60">
-              {current.category}
-            </p>
+            {current.collection ? (
+              <div className="mt-4 text-center">
+                <p className="font-serif text-lg font-light italic text-bone/90">
+                  {current.collection.title}
+                </p>
+                <p className="mt-1 text-[0.65rem] uppercase tracking-eyebrow text-bone/50">
+                  {current.category}
+                </p>
+                <div className="mx-auto mt-3 h-px w-10 bg-bone/25" />
+                <p className="mx-auto mt-3 max-w-lg text-[0.7rem] font-light leading-relaxed tracking-[0.08em] text-bone/60">
+                  {current.collection.credits.map((c, i) => (
+                    <span key={c.role} className="whitespace-nowrap">
+                      {i > 0 && <span className="mx-2 text-bone/30">·</span>}
+                      <span className="uppercase tracking-[0.18em] text-bone/45">{c.role}</span>{" "}
+                      <span className="text-bone/75">{c.name}</span>
+                    </span>
+                  ))}
+                </p>
+              </div>
+            ) : (
+              <p className="mt-3 text-center text-xs uppercase tracking-eyebrow text-bone/60">
+                {current.category}
+              </p>
+            )}
           </motion.div>
 
           <button

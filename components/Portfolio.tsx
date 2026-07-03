@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { SmartImage } from "./SmartImage";
 import { Lightbox } from "./Lightbox";
 import { Reveal } from "./Reveal";
-import { categories, gallery, type Category } from "@/lib/gallery";
+import { categories, gallery, forbiddenDesire, type Category } from "@/lib/gallery";
 
 const EASE = [0.23, 1, 0.32, 1] as const;
 
@@ -52,6 +52,42 @@ export function Portfolio() {
           </div>
         </Reveal>
 
+        {/* Collection credit — appears when browsing the Fashion editorial. */}
+        <AnimatePresence>
+          {filter === "fashion" && (
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 12 }}
+              transition={{ duration: 0.5, ease: EASE }}
+              className="mt-12 border-y border-stone/30 py-8 text-center"
+            >
+              <p className="text-[0.65rem] uppercase tracking-eyebrow text-bronze">
+                The Collection
+              </p>
+              <h3 className="mt-3 font-serif text-3xl font-light italic text-ink md:text-4xl">
+                {forbiddenDesire.title}
+              </h3>
+              <div className="mx-auto mt-5 h-px w-12 bg-clay/60" />
+              <div className="mx-auto mt-5 flex max-w-3xl flex-col items-center gap-2.5 sm:flex-row sm:justify-center sm:gap-0">
+                {forbiddenDesire.credits.map((c, i) => (
+                  <span key={c.role} className="flex items-center text-sm font-light text-charcoal/80">
+                    {i > 0 && (
+                      <span aria-hidden className="mx-4 hidden h-3 w-px bg-stone/40 sm:block" />
+                    )}
+                    <span>
+                      <span className="mr-2 text-[0.6rem] uppercase tracking-[0.2em] text-bronze">
+                        {c.role}
+                      </span>
+                      <span className="font-serif text-base italic text-ink/85">{c.name}</span>
+                    </span>
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Masonry-style gallery (CSS columns for an organic, editorial rhythm). */}
         <motion.div layout className="mt-12 columns-2 gap-4 md:columns-3 [&>*]:mb-4">
           <AnimatePresence mode="popLayout">
@@ -81,8 +117,15 @@ export function Portfolio() {
                     className="h-auto w-full object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
                   />
                   <div className="absolute inset-0 flex items-end bg-gradient-to-t from-ink/50 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                    <span className="p-4 text-xs uppercase tracking-eyebrow text-bone">
-                      {img.category}
+                    <span className="p-4 text-left">
+                      {img.collection && (
+                        <span className="block font-serif text-base italic text-bone">
+                          {img.collection.title}
+                        </span>
+                      )}
+                      <span className="mt-0.5 block text-xs uppercase tracking-eyebrow text-bone/80">
+                        {img.category}
+                      </span>
                     </span>
                   </div>
                 </motion.button>
