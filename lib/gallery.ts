@@ -155,6 +155,9 @@ export const gallery: GalleryImage[] = [
   // ---- Fashion · Nequita studio session ----
   nq(1, "Over-the-shoulder studio portrait with a smoked bronze eye and deep berry lip"),
   nq(2, "Smiling studio look in painterly blue mesh with a bold berry lip on teal"),
+  nq(3, "Over-the-shoulder gaze on purple with a smoked plum eye and mauve lip"),
+  nq(4, "Downcast lilac beauty portrait with a shimmering violet lid and soft plum lip"),
+  nq(5, "Full-length pink sparkle look with windswept hair and a soft glam face"),
 
   // ---- Photography · Danimac portrait session ----
   dm(1, "Warm close-up portrait with a precise wing and glossy nude lip on copper-red hair"),
