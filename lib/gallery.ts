@@ -87,6 +87,21 @@ const dm = (n: number, alt: string): GalleryImage => ({
   collection: danimac,
 });
 
+// Portrait session with Sara Ann — Sia behind both the brush and the lens.
+export const saraAnn: Collection = {
+  credits: [
+    { role: "Makeup & Photography", lines: ["Sia", "@Siasmakeup"] },
+    { role: "Actress & Director", lines: ["@thesara_ann"] },
+  ],
+};
+
+const sa = (n: number, alt: string): GalleryImage => ({
+  src: `/images/portfolio/photography/Sara_ann_${n}.jpeg`,
+  category: "photography",
+  alt,
+  collection: saraAnn,
+});
+
 export const gallery: GalleryImage[] = [
   // ---- Bridal ----
   { src: "/images/portfolio/bridal/bridal-3.jpeg", category: "bridal", alt: "Timeless bridal eye with feathered lashes" },
@@ -113,6 +128,13 @@ export const gallery: GalleryImage[] = [
   dm(4, "Profile portrait showing a clean winged liner and softly blushed cheek"),
   dm(5, "Soft-focus portrait in powder blue with a warm, diffused complexion"),
   dm(6, "Sunlit outdoor portrait in denim with camera-ready natural glam"),
+
+  // ---- Photography · Sara Ann portrait session ----
+  sa(1, "Sunlit close-up with a graphic editorial brow, feathered lash and glossy lip"),
+  sa(2, "Studio portrait with soft bronzed glam and sculpted brows under curly blonde hair"),
+  sa(3, "Candid laughing portrait in white linen with a fresh, luminous complexion"),
+  sa(4, "Stairwell portrait in white linen with a clean, camera-ready natural glam"),
+  sa(5, "Direct-gaze portrait with defined brows and a soft matte finish"),
 
   // ---- Events (placeholders — no images uploaded yet) ----
   { src: "/images/portfolio/events/events-01.jpg", category: "events", alt: "Polished evening glam for a special event" },
