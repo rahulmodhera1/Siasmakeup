@@ -91,8 +91,7 @@ export const gallery: GalleryImage[] = [
   rs(2, "Playful pink satin and denim look with sun-kissed glam at the arcade"),
   rs(3, "Neon-lit rink portrait with a bold berry lip and softly blended eye"),
 
-  // ---- Photography ----
-  { src: "/images/portfolio/photography/photo-2.jpeg", category: "photography", alt: "Camera-ready complexion for a portrait shoot" },
+  // ---- Photography (no images uploaded yet) ----
 
   // ---- Events (placeholders — no images uploaded yet) ----
   { src: "/images/portfolio/events/events-01.jpg", category: "events", alt: "Polished evening glam for a special event" },
