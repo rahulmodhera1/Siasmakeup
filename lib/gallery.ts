@@ -88,6 +88,25 @@ const nq = (n: number, alt: string): GalleryImage => ({
   collection: nequita,
 });
 
+// On set with Nequita — music-video production stills with the full crew.
+export const nequitaOnSet: Collection = {
+  credits: [
+    { role: "Makeup", lines: ["Sia", "@Siasmakeup"] },
+    { role: "Singer", lines: ["@nequitamusic"] },
+    { role: "Music Producer / Director", lines: ["@broxbold"] },
+    { role: "Cinematographer", lines: ["@justin_lovell"] },
+    { role: "Steadicam Op", lines: ["@chrismorsbydop"] },
+    { role: "Studio", lines: ["@astrolabstudio"] },
+  ],
+};
+
+const ns = (n: number, alt: string): GalleryImage => ({
+  src: `/images/portfolio/fashion/Nequita_Set_${n}.jpeg`,
+  category: "fashion",
+  alt,
+  collection: nequitaOnSet,
+});
+
 // Portrait session with Danimac — Sia behind both the brush and the lens.
 export const danimac: Collection = {
   credits: [
@@ -158,6 +177,10 @@ export const gallery: GalleryImage[] = [
   nq(3, "Over-the-shoulder gaze on purple with a smoked plum eye and mauve lip"),
   nq(4, "Downcast lilac beauty portrait with a shimmering violet lid and soft plum lip"),
   nq(5, "Full-length pink sparkle look with windswept hair and a soft glam face"),
+
+  // ---- Fashion · Nequita music-video set stills ----
+  ns(1, "Music-video set still under pink and blue neon with dramatic smoked-out glam"),
+  ns(2, "Close set still in studded mesh with bold lashes under violet light"),
 
   // ---- Photography · Danimac portrait session ----
   dm(1, "Warm close-up portrait with a precise wing and glossy nude lip on copper-red hair"),
