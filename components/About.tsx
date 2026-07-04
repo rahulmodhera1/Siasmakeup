@@ -15,7 +15,7 @@ export function About() {
         <Reveal y={32} className="order-1 md:order-none">
           <div className="relative aspect-[4/5] w-full overflow-hidden">
             <SmartImage
-              src="/images/about/portrait.jpg"
+              src="/images/about/sia-portrait.jpeg"
               alt="Portrait of Sia, Toronto freelance makeup artist"
               label="Portrait"
               fill
