@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { SmartImage } from "./SmartImage";
 import { Lightbox } from "./Lightbox";
 import { Reveal } from "./Reveal";
-import { categories, gallery, forbiddenDesire, type Category } from "@/lib/gallery";
+import { categories, gallery, type Category, type Collection } from "@/lib/gallery";
 
 const EASE = [0.23, 1, 0.32, 1] as const;
 
@@ -17,6 +17,15 @@ export function Portfolio() {
     () => (filter === "all" ? gallery : gallery.filter((g) => g.category === filter)),
     [filter]
   );
+
+  // Unique collections among the fashion editorials, in order of appearance.
+  const fashionCollections = useMemo(() => {
+    const seen = new Set<Collection>();
+    for (const g of gallery) {
+      if (g.category === "fashion" && g.collection) seen.add(g.collection);
+    }
+    return [...seen];
+  }, []);
 
   return (
     <section id="work" className="bg-bone py-24 md:py-32">
@@ -60,30 +69,38 @@ export function Portfolio() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 12 }}
               transition={{ duration: 0.5, ease: EASE }}
-              className="mt-12 border-y border-stone/30 py-8 text-center"
+              className="mt-12 divide-y divide-stone/25 border-y border-stone/30 text-center"
             >
-              <p className="text-[0.65rem] uppercase tracking-eyebrow text-bronze">
-                The Collection
-              </p>
-              <h3 className="mt-3 font-serif text-3xl font-light italic text-ink md:text-4xl">
-                {forbiddenDesire.title}
-              </h3>
-              <div className="mx-auto mt-5 h-px w-12 bg-clay/60" />
-              <div className="mx-auto mt-7 grid max-w-4xl grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4">
-                {forbiddenDesire.credits.map((c) => (
-                  <div key={c.role} className="text-center">
-                    <p className="text-xs uppercase tracking-[0.2em] text-bronze">{c.role}</p>
-                    {c.lines.map((line) => (
-                      <p
-                        key={line}
-                        className="mt-1.5 whitespace-nowrap font-serif text-lg italic leading-snug text-ink/85 md:text-xl"
-                      >
-                        {line}
+              {fashionCollections.map((col) => (
+                <div key={col.title ?? col.credits.map((c) => c.role + c.lines.join()).join()} className="py-9">
+                  {col.title && (
+                    <>
+                      <p className="text-[0.65rem] uppercase tracking-eyebrow text-bronze">
+                        The Collection
                       </p>
+                      <h3 className="mt-3 font-serif text-3xl font-light italic text-ink md:text-4xl">
+                        {col.title}
+                      </h3>
+                      <div className="mx-auto mt-5 h-px w-12 bg-clay/60" />
+                    </>
+                  )}
+                  <div className={`mx-auto flex max-w-4xl flex-wrap justify-center gap-x-12 gap-y-7 ${col.title ? "mt-7" : ""}`}>
+                    {col.credits.map((c) => (
+                      <div key={c.role} className="text-center">
+                        <p className="text-xs uppercase tracking-[0.2em] text-bronze">{c.role}</p>
+                        {c.lines.map((line) => (
+                          <p
+                            key={line}
+                            className="mt-1.5 whitespace-nowrap font-serif text-lg italic leading-snug text-ink/85 md:text-xl"
+                          >
+                            {line}
+                          </p>
+                        ))}
+                      </div>
                     ))}
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </motion.div>
           )}
         </AnimatePresence>
@@ -118,7 +135,7 @@ export function Portfolio() {
                   />
                   <div className="absolute inset-0 flex items-end bg-gradient-to-t from-ink/50 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                     <span className="p-4 text-left">
-                      {img.collection && (
+                      {img.collection?.title && (
                         <span className="block font-serif text-base italic text-bone">
                           {img.collection.title}
                         </span>

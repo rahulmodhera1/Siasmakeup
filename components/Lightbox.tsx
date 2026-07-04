@@ -100,9 +100,11 @@ export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) 
             </div>
             {current.collection ? (
               <div className="mt-4 text-center">
-                <p className="font-serif text-lg font-light italic text-bone/90">
-                  {current.collection.title}
-                </p>
+                {current.collection.title && (
+                  <p className="font-serif text-lg font-light italic text-bone/90">
+                    {current.collection.title}
+                  </p>
+                )}
                 <p className="mt-1 text-[0.65rem] uppercase tracking-eyebrow text-bone/50">
                   {current.category}
                 </p>

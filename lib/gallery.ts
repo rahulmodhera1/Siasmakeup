@@ -17,7 +17,8 @@ export type Credit = {
 };
 
 export type Collection = {
-  title: string;
+  /** Optional editorial title. Untitled shoots still display their credits. */
+  title?: string;
   credits: Credit[];
 };
 
@@ -48,11 +49,27 @@ export const forbiddenDesire: Collection = {
   ],
 };
 
+// Untitled roller-rink editorial — credits only, no collection name.
+export const rollerSkating: Collection = {
+  credits: [
+    { role: "Makeup", lines: ["Sia", "@Siasmakeup"] },
+    { role: "Photography", lines: ["@seranno_photography_studio"] },
+    { role: "Model", lines: ["@itsrachelpagett"] },
+  ],
+};
+
 const fd = (n: number, alt: string): GalleryImage => ({
   src: `/images/portfolio/fashion/Forbidden Desire ${n}.jpeg`,
   category: "fashion",
   alt,
   collection: forbiddenDesire,
+});
+
+const rs = (n: number, alt: string): GalleryImage => ({
+  src: `/images/portfolio/fashion/Roller Skating ${n}.jpeg`,
+  category: "fashion",
+  alt,
+  collection: rollerSkating,
 });
 
 export const gallery: GalleryImage[] = [
@@ -68,6 +85,11 @@ export const gallery: GalleryImage[] = [
   fd(6, "Off-the-shoulder leather bodice with a smoked-out graphic cat eye"),
   fd(7, "Mini dress and boots, strong brow and bold lash in low dramatic light"),
   fd(8, "Wide-leg tailoring and sculpted matte complexion against the dark"),
+
+  // ---- Fashion · Roller-rink editorial ----
+  rs(1, "Retro roller-rink editorial with soft glam, posed on skates at the snack bar"),
+  rs(2, "Playful pink satin and denim look with sun-kissed glam at the arcade"),
+  rs(3, "Neon-lit rink portrait with a bold berry lip and softly blended eye"),
 
   // ---- Photography ----
   { src: "/images/portfolio/photography/photo-2.jpeg", category: "photography", alt: "Camera-ready complexion for a portrait shoot" },
