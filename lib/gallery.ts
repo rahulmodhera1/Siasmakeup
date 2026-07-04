@@ -209,11 +209,11 @@ export const gallery: GalleryImage[] = [
   dm(6, "Sunlit outdoor portrait in denim with camera-ready natural glam"),
 
   // ---- Photography · Sara Ann portrait session ----
-  sa(1, "Sunlit close-up with a graphic editorial brow, feathered lash and glossy lip"),
-  sa(2, "Studio portrait with soft bronzed glam and sculpted brows under curly blonde hair"),
-  sa(3, "Candid laughing portrait in white linen with a fresh, luminous complexion"),
   sa(4, "Stairwell portrait in white linen with a clean, camera-ready natural glam"),
   sa(5, "Direct-gaze portrait with defined brows and a soft matte finish"),
+  sa(3, "Candid laughing portrait in white linen with a fresh, luminous complexion"),
+  sa(1, "Sunlit close-up with a graphic editorial brow, feathered lash and glossy lip"),
+  sa(2, "Studio portrait with soft bronzed glam and sculpted brows under curly blonde hair"),
 
   // ---- Photography · Laila Biafore portrait session ----
   lb(1, "Classic red-lip beauty portrait with winged lash and a flawless satin complexion"),
