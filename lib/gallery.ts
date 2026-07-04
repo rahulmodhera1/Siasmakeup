@@ -102,6 +102,21 @@ const sa = (n: number, alt: string): GalleryImage => ({
   collection: saraAnn,
 });
 
+// Portrait session with Laila Biafore — Sia behind both the brush and the lens.
+export const lailaBiafore: Collection = {
+  credits: [
+    { role: "Makeup & Photography", lines: ["Sia", "@Siasmakeup"] },
+    { role: "Model", lines: ["Laila Biafore", "@z.ninis.mama"] },
+  ],
+};
+
+const lb = (n: number, alt: string): GalleryImage => ({
+  src: `/images/portfolio/photography/Laila_Biafore_${n}.jpeg`,
+  category: "photography",
+  alt,
+  collection: lailaBiafore,
+});
+
 export const gallery: GalleryImage[] = [
   // ---- Bridal ----
   { src: "/images/portfolio/bridal/bridal-3.jpeg", category: "bridal", alt: "Timeless bridal eye with feathered lashes" },
@@ -135,6 +150,10 @@ export const gallery: GalleryImage[] = [
   sa(3, "Candid laughing portrait in white linen with a fresh, luminous complexion"),
   sa(4, "Stairwell portrait in white linen with a clean, camera-ready natural glam"),
   sa(5, "Direct-gaze portrait with defined brows and a soft matte finish"),
+
+  // ---- Photography · Laila Biafore portrait session ----
+  lb(1, "Classic red-lip beauty portrait with winged lash and a flawless satin complexion"),
+  lb(2, "Polished portrait in a cobalt blazer with soft rose glam and a sleek bun"),
 
   // ---- Events (placeholders — no images uploaded yet) ----
   { src: "/images/portfolio/events/events-01.jpg", category: "events", alt: "Polished evening glam for a special event" },
