@@ -53,7 +53,7 @@ export const forbiddenDesire: Collection = {
 export const rollerSkating: Collection = {
   credits: [
     { role: "Makeup", lines: ["Sia", "@Siasmakeup"] },
-    { role: "Photography", lines: ["@seranno_photography_studio"] },
+    { role: "Photography", lines: ["@serrano_photography_studio"] },
     { role: "Model", lines: ["@itsrachelpagett"] },
   ],
 };
