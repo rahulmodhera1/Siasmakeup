@@ -37,21 +37,30 @@ export function About() {
           <Reveal delay={0.1}>
             <div className="mt-7 space-y-5 text-base font-light leading-relaxed text-charcoal/85">
               <p>
-                I'm Sia, a Toronto-based freelance makeup artist. For over a
-                decade I've worked across weddings, editorial sets and private
-                events — building a quiet, complexion-first approach that lets
-                real skin and real features lead.
+                Welcome! I&rsquo;m Vasia, a Toronto-based freelance makeup
+                artist with over a decade of experience specializing in bridal,
+                photography and event makeup — allowing me to work with various
+                ethnicities, textures and skin types. My style blends
+                cutting-edge beauty trends with classic techniques, working
+                across print, fashion and editorial.
               </p>
               <p>
-                My work lives at the intersection of polished and personal. I
-                listen first, then translate a feeling into something tangible:
-                a softer glow for a bride, a sharper line for a campaign, makeup
-                engineered to hold up through long days and bright lights.
+                I believe makeup should be fun, accessible and personal. From
+                the moment you sit in my chair to after you&rsquo;ve left, my
+                goal is to make you feel confident in your skin and excited to
+                walk out into the world, highlighting your beautiful features.
               </p>
               <p>
-                Working freelance means it's just you and me — unhurried,
-                collaborative, and entirely about the result. I travel across
-                the GTA, kit in hand, ready for whatever the day asks.
+                Having a visual arts background, I draw inspiration from the
+                countries I visit to the colors and textures in my local
+                garden. When I&rsquo;m not working you can find me at music
+                festivals, hiking or painting in my backyard!
+              </p>
+              <p>
+                Working freelance means it&rsquo;s just you and me — unhurried,
+                collaborative and entirely about the result. I travel across
+                Toronto, the GTA and beyond — kit in hand, ready for whatever
+                the day asks.
               </p>
             </div>
           </Reveal>
