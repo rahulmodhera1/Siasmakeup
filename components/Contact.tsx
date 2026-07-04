@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Facebook, Instagram, Mail, MapPin, Music2, Phone } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { Sprig } from "./Sprig";
+import { PRIDE_GRADIENT } from "./About";
 import { brand, eventTypes } from "@/lib/content";
 
 // ----------------------------------------------------------------------------
@@ -164,6 +165,21 @@ export function Contact() {
                 <MapPin strokeWidth={1.25} className="h-5 w-5 shrink-0 text-clay" />
                 <span className="text-sm font-light tracking-wide">
                   Based in {brand.location} · {brand.serviceArea}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-4 pt-1 text-charcoal/80">
+                <span
+                  aria-hidden
+                  className="flex h-5 w-5 shrink-0 items-center justify-center"
+                >
+                  <span
+                    className="h-3 w-3 rounded-full"
+                    style={{ background: PRIDE_GRADIENT }}
+                  />
+                </span>
+                <span className="text-sm font-light tracking-wide">
+                  LGBTQ+ inclusive — everyone is welcome in my chair.
                 </span>
               </div>
             </div>

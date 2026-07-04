@@ -6,6 +6,10 @@ import { Sprig } from "./Sprig";
 
 const chips = ["Bridal", "Fashion", "Photography", "Events"];
 
+// Soft-toned pride gradient tuned to the site's earthy palette.
+export const PRIDE_GRADIENT =
+  "linear-gradient(135deg, #C96A5E 0%, #CE9450 25%, #C2B25C 45%, #7E9A72 65%, #6B87AE 82%, #97709F 100%)";
+
 export function About() {
   return (
     <section id="about" className="relative overflow-hidden bg-bone py-24 md:py-32">
@@ -75,6 +79,14 @@ export function About() {
                   {chip}
                 </li>
               ))}
+              <li className="flex items-center gap-2 rounded-full border border-stone/40 px-4 py-1.5 text-xs uppercase tracking-eyebrow text-bronze">
+                <span
+                  aria-hidden
+                  className="h-2 w-2 shrink-0 rounded-full"
+                  style={{ background: PRIDE_GRADIENT }}
+                />
+                LGBTQ+ Inclusive
+              </li>
             </ul>
           </Reveal>
         </div>
