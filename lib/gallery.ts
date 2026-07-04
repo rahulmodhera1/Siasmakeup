@@ -72,6 +72,21 @@ const rs = (n: number, alt: string): GalleryImage => ({
   collection: rollerSkating,
 });
 
+// Portrait session with Danimac — Sia behind both the brush and the lens.
+export const danimac: Collection = {
+  credits: [
+    { role: "Makeup & Photography", lines: ["Sia", "@Siasmakeup"] },
+    { role: "Model", lines: ["@danimac_"] },
+  ],
+};
+
+const dm = (n: number, alt: string): GalleryImage => ({
+  src: `/images/portfolio/photography/Danimac_${n}.jpeg`,
+  category: "photography",
+  alt,
+  collection: danimac,
+});
+
 export const gallery: GalleryImage[] = [
   // ---- Bridal ----
   { src: "/images/portfolio/bridal/bridal-3.jpeg", category: "bridal", alt: "Timeless bridal eye with feathered lashes" },
@@ -91,7 +106,13 @@ export const gallery: GalleryImage[] = [
   rs(2, "Playful pink satin and denim look with sun-kissed glam at the arcade"),
   rs(3, "Neon-lit rink portrait with a bold berry lip and softly blended eye"),
 
-  // ---- Photography (no images uploaded yet) ----
+  // ---- Photography · Danimac portrait session ----
+  dm(1, "Warm close-up portrait with a precise wing and glossy nude lip on copper-red hair"),
+  dm(2, "Smiling portrait with soft glam and a sculpted eye against a neutral wall"),
+  dm(3, "Over-the-shoulder beauty portrait with luminous skin and a sharp cat eye"),
+  dm(4, "Profile portrait showing a clean winged liner and softly blushed cheek"),
+  dm(5, "Soft-focus portrait in powder blue with a warm, diffused complexion"),
+  dm(6, "Sunlit outdoor portrait in denim with camera-ready natural glam"),
 
   // ---- Events (placeholders — no images uploaded yet) ----
   { src: "/images/portfolio/events/events-01.jpg", category: "events", alt: "Polished evening glam for a special event" },

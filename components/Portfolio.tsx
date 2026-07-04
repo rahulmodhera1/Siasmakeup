@@ -24,19 +24,19 @@ export function Portfolio() {
     [filter]
   );
 
-  // Fashion editorials grouped per shoot: [collection, its images].
-  // Untitled shoots are their own group; any uncollected images trail at the end.
-  const fashionGroups = useMemo(() => {
+  // When a single category is selected and it contains credited shoots,
+  // group its images per shoot so each album renders with its own header.
+  const shootGroups = useMemo(() => {
+    if (filter === "all") return null;
     const groups: { collection: Collection | null; images: GalleryImage[] }[] = [];
-    for (const g of gallery) {
-      if (g.category !== "fashion") continue;
+    for (const g of visible) {
       const key = g.collection ?? null;
       const existing = groups.find((grp) => grp.collection === key);
       if (existing) existing.images.push(g);
       else groups.push({ collection: key, images: [g] });
     }
-    return groups;
-  }, []);
+    return groups.some((grp) => grp.collection) ? groups : null;
+  }, [filter, visible]);
 
   const openImage = (img: GalleryImage) => setActiveIndex(visible.indexOf(img));
 
@@ -152,10 +152,10 @@ export function Portfolio() {
           </div>
         </Reveal>
 
-        {filter === "fashion" ? (
-          // Fashion: each shoot is its own album — credit header, then its images.
+        {shootGroups ? (
+          // Each credited shoot is its own album — header, then its images.
           <div>
-            {fashionGroups.map((grp, i) => (
+            {shootGroups.map((grp, i) => (
               <motion.div
                 key={grp.collection?.title ?? `shoot-${i}`}
                 initial={{ opacity: 0, y: 12 }}

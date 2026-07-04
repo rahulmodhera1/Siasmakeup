@@ -61,8 +61,9 @@ export const services: Service[] = [
   {
     title: "Photography",
     blurb: "Camera-tested makeup engineered to hold up under any lighting.",
-    image: "/images/portfolio/photography/photo-2.jpeg",
+    image: "/images/portfolio/photography/Danimac_1.jpeg",
     category: "photography",
+    imagePosition: "50% 25%",
   },
   {
     title: "Events",
