@@ -72,6 +72,22 @@ const rs = (n: number, alt: string): GalleryImage => ({
   collection: rollerSkating,
 });
 
+// Studio session with singer Nequita — teal backdrop, berry lip.
+export const nequita: Collection = {
+  credits: [
+    { role: "Makeup", lines: ["Sia", "@Siasmakeup"] },
+    { role: "Photography", lines: ["@ramyaridaphoto"] },
+    { role: "Model / Singer", lines: ["@nequitamusic"] },
+  ],
+};
+
+const nq = (n: number, alt: string): GalleryImage => ({
+  src: `/images/portfolio/fashion/Nequita_${n}.jpeg`,
+  category: "fashion",
+  alt,
+  collection: nequita,
+});
+
 // Portrait session with Danimac — Sia behind both the brush and the lens.
 export const danimac: Collection = {
   credits: [
@@ -135,6 +151,10 @@ export const gallery: GalleryImage[] = [
   rs(1, "Retro roller-rink editorial with soft glam, posed on skates at the snack bar"),
   rs(2, "Playful pink satin and denim look with sun-kissed glam at the arcade"),
   rs(3, "Neon-lit rink portrait with a bold berry lip and softly blended eye"),
+
+  // ---- Fashion · Nequita studio session ----
+  nq(1, "Over-the-shoulder studio portrait with a smoked bronze eye and deep berry lip"),
+  nq(2, "Smiling studio look in painterly blue mesh with a bold berry lip on teal"),
 
   // ---- Photography · Danimac portrait session ----
   dm(1, "Warm close-up portrait with a precise wing and glossy nude lip on copper-red hair"),
