@@ -160,7 +160,7 @@ export const featured: string[] = [
   "/images/portfolio/fashion/Nequita_1.jpeg",
   "/images/portfolio/photography/Danimac_1.jpeg",
   "/images/portfolio/fashion/Nequita_3.jpeg",
-  "/images/portfolio/photography/Sara_ann_1.jpeg",
+  "/images/portfolio/photography/Sara_ann_4.jpeg",
   "/images/portfolio/photography/Laila_Biafore_1.jpeg",
   "/images/portfolio/fashion/Roller Skating 2.jpeg",
   "/images/portfolio/fashion/Forbidden Desire 6.jpeg",
