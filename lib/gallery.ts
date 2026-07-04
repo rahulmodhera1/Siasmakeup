@@ -42,17 +42,17 @@ export const categories: { id: Category | "all"; label: string }[] = [
 export const forbiddenDesire: Collection = {
   title: "Forbidden Desire",
   credits: [
-    { role: "Makeup", lines: ["Sia", "@Siasmakeup"] },
-    { role: "Photography", lines: ["Larissa Scisci", "@s.cisci"] },
+    { role: "Makeup", lines: ["@Siasmakeup"] },
+    { role: "Photography", lines: ["@s.cisci"] },
     { role: "Models", lines: ["@nadianotnice", "@destineecray"] },
-    { role: "Designer", lines: ["Jair Castillo", "@j.castillo_____"] },
+    { role: "Designer", lines: ["@j.castillo_____"] },
   ],
 };
 
 // Untitled roller-rink editorial — credits only, no collection name.
 export const rollerSkating: Collection = {
   credits: [
-    { role: "Makeup", lines: ["Sia", "@Siasmakeup"] },
+    { role: "Makeup", lines: ["@Siasmakeup"] },
     { role: "Photography", lines: ["@serrano_photography_studio"] },
     { role: "Model", lines: ["@itsrachelpagett"] },
   ],
@@ -75,7 +75,7 @@ const rs = (n: number, alt: string): GalleryImage => ({
 // Studio session with singer Nequita — teal backdrop, berry lip.
 export const nequita: Collection = {
   credits: [
-    { role: "Makeup", lines: ["Sia", "@Siasmakeup"] },
+    { role: "Makeup", lines: ["@Siasmakeup"] },
     { role: "Photography", lines: ["@ramyaridaphoto"] },
     { role: "Model / Singer", lines: ["@nequitamusic"] },
   ],
@@ -91,7 +91,7 @@ const nq = (n: number, alt: string): GalleryImage => ({
 // On set with Nequita — music-video production stills with the full crew.
 export const nequitaOnSet: Collection = {
   credits: [
-    { role: "Makeup", lines: ["Sia", "@Siasmakeup"] },
+    { role: "Makeup", lines: ["@Siasmakeup"] },
     { role: "Singer", lines: ["@nequitamusic"] },
     { role: "Music Producer / Director", lines: ["@broxbold"] },
     { role: "Cinematographer", lines: ["@justin_lovell"] },
@@ -110,7 +110,7 @@ const ns = (n: number, alt: string): GalleryImage => ({
 // Portrait session with Danimac — Sia behind both the brush and the lens.
 export const danimac: Collection = {
   credits: [
-    { role: "Makeup & Photography", lines: ["Sia", "@Siasmakeup"] },
+    { role: "Makeup & Photography", lines: ["@Siasmakeup"] },
     { role: "Model", lines: ["@danimac_"] },
   ],
 };
@@ -125,7 +125,7 @@ const dm = (n: number, alt: string): GalleryImage => ({
 // Portrait session with Sara Ann — Sia behind both the brush and the lens.
 export const saraAnn: Collection = {
   credits: [
-    { role: "Makeup & Photography", lines: ["Sia", "@Siasmakeup"] },
+    { role: "Makeup & Photography", lines: ["@Siasmakeup"] },
     { role: "Actress & Director", lines: ["@thesara_ann"] },
   ],
 };
@@ -140,8 +140,8 @@ const sa = (n: number, alt: string): GalleryImage => ({
 // Portrait session with Laila Biafore — Sia behind both the brush and the lens.
 export const lailaBiafore: Collection = {
   credits: [
-    { role: "Makeup & Photography", lines: ["Sia", "@Siasmakeup"] },
-    { role: "Model", lines: ["Laila Biafore", "@z.ninis.mama"] },
+    { role: "Makeup & Photography", lines: ["@Siasmakeup"] },
+    { role: "Model", lines: ["@z.ninis.mama"] },
   ],
 };
 
@@ -151,6 +151,24 @@ const lb = (n: number, alt: string): GalleryImage => ({
   alt,
   collection: lailaBiafore,
 });
+
+// ---- Featured order --------------------------------------------------------
+// Srcs listed here are hoisted to the top of the "All" view, in this order.
+// Everything else follows in its natural gallery order.
+export const featured: string[] = [
+  "/images/portfolio/fashion/Forbidden Desire 1.jpeg",
+  "/images/portfolio/fashion/Nequita_1.jpeg",
+  "/images/portfolio/photography/Danimac_1.jpeg",
+  "/images/portfolio/fashion/Nequita_3.jpeg",
+  "/images/portfolio/photography/Sara_ann_1.jpeg",
+  "/images/portfolio/photography/Laila_Biafore_1.jpeg",
+  "/images/portfolio/fashion/Roller Skating 2.jpeg",
+  "/images/portfolio/fashion/Forbidden Desire 6.jpeg",
+  "/images/portfolio/photography/Danimac_2.jpeg",
+  "/images/portfolio/fashion/Nequita_Set_1.jpeg",
+  "/images/portfolio/fashion/Forbidden Desire 2.jpeg",
+  "/images/portfolio/fashion/Nequita_4.jpeg",
+];
 
 export const gallery: GalleryImage[] = [
   // ---- Bridal ----

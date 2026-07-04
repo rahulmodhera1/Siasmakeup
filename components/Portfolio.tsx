@@ -7,6 +7,7 @@ import { Lightbox } from "./Lightbox";
 import { Reveal } from "./Reveal";
 import {
   categories,
+  featured,
   gallery,
   type Category,
   type Collection,
@@ -19,10 +20,15 @@ export function Portfolio() {
   const [filter, setFilter] = useState<Category | "all">("all");
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const visible = useMemo(
-    () => (filter === "all" ? gallery : gallery.filter((g) => g.category === filter)),
-    [filter]
-  );
+  const visible = useMemo(() => {
+    if (filter !== "all") return gallery.filter((g) => g.category === filter);
+    // "All" leads with the featured picks; the rest keep their natural order.
+    const rank = (g: GalleryImage) => {
+      const i = featured.indexOf(g.src);
+      return i === -1 ? Number.MAX_SAFE_INTEGER : i;
+    };
+    return [...gallery].sort((a, b) => rank(a) - rank(b));
+  }, [filter]);
 
   // When a single category is selected and it contains credited shoots,
   // group its images per shoot so each album renders with its own header.
@@ -50,17 +56,16 @@ export function Portfolio() {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.96 }}
       transition={{ duration: 0.45, ease: EASE }}
-      className="group relative block w-full overflow-hidden break-inside-avoid bg-concrete"
+      className="group relative block aspect-[4/5] w-[calc(50%-0.5rem)] overflow-hidden bg-concrete md:w-[calc(33.333%-0.667rem)]"
       aria-label={`View: ${img.alt}`}
     >
       <SmartImage
         src={img.src}
         alt={img.alt}
         label={img.category}
-        width={800}
-        height={1000}
+        fill
         sizes="(max-width: 768px) 50vw, 33vw"
-        className="h-auto w-full object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
+        className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
       />
       <div className="absolute inset-0 flex items-end bg-gradient-to-t from-ink/50 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
         <span className="p-4 text-left">
@@ -77,9 +82,10 @@ export function Portfolio() {
     </motion.button>
   );
 
-  // Masonry grid (CSS columns for an organic, editorial rhythm).
+  // Uniform editorial grid: consistent 4:5 tiles, incomplete rows centered —
+  // no ragged columns or empty corners regardless of image count.
   const grid = (images: GalleryImage[]) => (
-    <motion.div layout className="columns-2 gap-4 md:columns-3 [&>*]:mb-4">
+    <motion.div layout className="flex flex-wrap justify-center gap-4">
       <AnimatePresence mode="popLayout">{images.map(tile)}</AnimatePresence>
     </motion.div>
   );
