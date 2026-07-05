@@ -28,26 +28,38 @@ export function Services() {
               variants={staggerItem}
               className="group relative overflow-hidden bg-bone"
             >
-              <div className="relative aspect-[16/11] w-full overflow-hidden">
-                <SmartImage
-                  src={service.image}
-                  alt={`${service.title} makeup by Sia`}
-                  label={service.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
-                  style={service.imagePosition ? { objectPosition: service.imagePosition } : undefined}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              </div>
-              <div className="p-7">
-                <h3 className="underline-grow inline-block font-serif text-2xl font-normal text-ink md:text-3xl">
-                  {service.title}
-                </h3>
-                <p className="mt-3 max-w-sm text-sm font-light leading-relaxed text-charcoal/75">
-                  {service.blurb}
-                </p>
-              </div>
+              {/* Whole card links to the portfolio, pre-filtered to this category. */}
+              <a
+                href="#work"
+                aria-label={`See ${service.title} work in the portfolio`}
+                onClick={() =>
+                  window.dispatchEvent(
+                    new CustomEvent("filter-portfolio", { detail: service.category })
+                  )
+                }
+                className="block"
+              >
+                <div className="relative aspect-[16/11] w-full overflow-hidden">
+                  <SmartImage
+                    src={service.image}
+                    alt={`${service.title} makeup by Sia`}
+                    label={service.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
+                    style={service.imagePosition ? { objectPosition: service.imagePosition } : undefined}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                </div>
+                <div className="p-7">
+                  <h3 className="underline-grow inline-block font-serif text-2xl font-normal text-ink md:text-3xl">
+                    {service.title}
+                  </h3>
+                  <p className="mt-3 max-w-sm text-sm font-light leading-relaxed text-charcoal/75">
+                    {service.blurb}
+                  </p>
+                </div>
+              </a>
             </motion.article>
           ))}
         </Stagger>

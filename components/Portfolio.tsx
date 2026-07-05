@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { SmartImage } from "./SmartImage";
 import { Lightbox } from "./Lightbox";
@@ -19,6 +19,16 @@ const EASE = [0.23, 1, 0.32, 1] as const;
 export function Portfolio() {
   const [filter, setFilter] = useState<Category | "all">("all");
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  // "What I Do" cards dispatch this so the grid arrives pre-filtered.
+  useEffect(() => {
+    const onFilter = (e: Event) => {
+      const cat = (e as CustomEvent<Category>).detail;
+      if (categories.some((c) => c.id === cat)) setFilter(cat);
+    };
+    window.addEventListener("filter-portfolio", onFilter);
+    return () => window.removeEventListener("filter-portfolio", onFilter);
+  }, []);
 
   const visible = useMemo(() => {
     if (filter !== "all") return gallery.filter((g) => g.category === filter);
