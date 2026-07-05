@@ -8,22 +8,22 @@ import { PRIDE_GRADIENT } from "./About";
 import { brand, eventTypes } from "@/lib/content";
 
 // ----------------------------------------------------------------------------
-//  CONTACT FORM DELIVERY  —  Formspree (inbox delivery), mailto fallback
+//  CONTACT FORM DELIVERY  —  emails sent from the site, no mail client
 //  ---------------------------------------------------------------------------
-//  Submissions are delivered straight to an inbox via Formspree.
+//  Submissions are delivered straight to Sia's inbox via FormSubmit
+//  (https://formsubmit.co) — free, no account required.
 //
-//  SETUP (one step):
-//    1. Create a free form at https://formspree.io (use Siasmakeup@hotmail.com).
-//    2. Paste the endpoint it gives you below  — e.g. "https://formspree.io/f/abcdwxyz".
-//       (Or, instead of editing code, set NEXT_PUBLIC_FORMSPREE_ENDPOINT in your
-//        Vercel project settings — either source works.)
+//  ONE-TIME ACTIVATION: the first submission triggers a confirmation email
+//  to Siasmakeup@hotmail.com. Sia clicks "Activate" once and every
+//  submission after that lands in her inbox automatically.
 //
-//  Until an endpoint is set, the form gracefully falls back to opening the
-//  visitor's email client pre-filled to Siasmakeup@hotmail.com, so the site is
-//  always functional and deploys to Vercel with zero config.
+//  Optional: if a Formspree endpoint is ever configured (below or via
+//  NEXT_PUBLIC_FORMSPREE_ENDPOINT), it takes priority. A mailto compose is
+//  kept only as a last-resort fallback if both services are unreachable.
 // ----------------------------------------------------------------------------
 const FORMSPREE_ENDPOINT =
-  process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ?? ""; // ← paste your Formspree endpoint here
+  process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ?? ""; // optional override
+const FORMSUBMIT_ENDPOINT = "https://formsubmit.co/ajax/Siasmakeup@hotmail.com";
 
 type Status = "idle" | "submitting" | "success";
 
@@ -52,27 +52,49 @@ export function Contact() {
     const date = String(data.get("date") ?? "");
     const message = String(data.get("message") ?? "");
 
-    // --- Option A: Formspree (real inbox delivery) ---
+    setStatus("submitting");
+    const done = () => {
+      form.reset();
+      setEventType("");
+      setStatus("success");
+    };
+
+    // --- Option A: Formspree, if an endpoint was configured ---
     if (FORMSPREE_ENDPOINT) {
-      setStatus("submitting");
       try {
         const res = await fetch(FORMSPREE_ENDPOINT, {
           method: "POST",
           headers: { Accept: "application/json" },
           body: data,
         });
-        if (res.ok) {
-          form.reset();
-          setEventType("");
-          setStatus("success");
-          return;
-        }
+        if (res.ok) return done();
       } catch {
-        /* fall through to mailto below */
+        /* fall through to FormSubmit below */
       }
     }
 
-    // --- Option B (default): mailto compose ---
+    // --- Option B (default): FormSubmit — sends the email from the site ---
+    try {
+      const res = await fetch(FORMSUBMIT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          "event type": type,
+          date,
+          message,
+          _subject: `${type ? type + " inquiry" : "Makeup inquiry"} — ${name || "New inquiry"}`,
+          _template: "table",
+          _captcha: "false",
+        }),
+      });
+      if (res.ok) return done();
+    } catch {
+      /* fall through to mailto below */
+    }
+
+    // --- Last resort: open the visitor's mail client pre-filled ---
     const subject = encodeURIComponent(
       `${type ? type + " inquiry" : "Makeup inquiry"} — ${name || "New inquiry"}`
     );
