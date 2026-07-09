@@ -76,6 +76,7 @@ export function Portfolio() {
         fill
         sizes="(max-width: 768px) 50vw, 33vw"
         className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
+        style={img.focus ? { objectPosition: img.focus } : undefined}
       />
       <div className="absolute inset-0 flex items-end bg-gradient-to-t from-ink/50 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
         <span className="p-4 text-left">
