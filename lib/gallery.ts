@@ -258,5 +258,6 @@ export const gallery: GalleryImage[] = [
   lb(2, "Polished portrait in a cobalt blazer with soft rose glam and a sleek bun"),
 
   // ---- Events ----
-  { src: "/images/portfolio/events/events-couple-01.png", category: "events", alt: "Bride and groom sharing a laughing embrace by a rustic barn, then posing together with a bright wildflower bouquet" },
+  { src: "/images/portfolio/events/events-wedding-01.jpg", category: "events", alt: "Bride and groom sharing a laughing embrace in front of a rustic barn" },
+  { src: "/images/portfolio/events/events-wedding-02.jpg", category: "events", alt: "Bride and groom smiling together in a forest clearing, holding a bright wildflower bouquet" },
 ];
