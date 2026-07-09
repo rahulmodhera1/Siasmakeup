@@ -167,11 +167,28 @@ const me = (n: number, alt: string): GalleryImage => ({
   collection: merald,
 });
 
+// Summer garden wedding with Fantauzzi Studios.
+export const fanta: Collection = {
+  credits: [
+    { role: "Makeup", lines: ["@Siasmakeup"] },
+    { role: "Assisting MUA", lines: ["@talineted"] },
+    { role: "Photography", lines: ["@fantauzzi_studios"] },
+  ],
+};
+
+const ft = (n: number, alt: string): GalleryImage => ({
+  src: `/images/portfolio/bridal/fanta${n}.jpeg`,
+  category: "bridal",
+  alt,
+  collection: fanta,
+});
+
 // ---- Featured order --------------------------------------------------------
 // Srcs listed here are hoisted to the top of the "All" view, in this order.
 // Everything else follows in its natural gallery order.
 export const featured: string[] = [
   "/images/portfolio/bridal/Merald1.jpeg",
+  "/images/portfolio/bridal/fanta1.jpeg",
   "/images/portfolio/fashion/Forbidden Desire 1.jpeg",
   "/images/portfolio/fashion/Nequita_1.jpeg",
   "/images/portfolio/photography/Danimac_1.jpeg",
@@ -187,13 +204,13 @@ export const featured: string[] = [
 ];
 
 export const gallery: GalleryImage[] = [
-  // ---- Bridal ----
-  { src: "/images/portfolio/bridal/bridal-3.jpeg", category: "bridal", alt: "Timeless bridal eye with feathered lashes" },
-
   // ---- Bridal · House of Emerald winter wedding ----
   me(1, "Bride flanked by her bridesmaids in faux fur wraps, holding winter bouquets before a sparkling arch"),
   me(2, "Bride and groom portrait under a pine garland at a winter wedding venue"),
   me(3, "Sia applying eye makeup to a seated client before the ceremony, candid black and white"),
+
+  // ---- Bridal · Fantauzzi Studios summer garden wedding ----
+  ft(1, "Bride in a tiara laughing with her bridesmaids in dusty blue and navy, garden wedding"),
 
   // ---- Fashion · Forbidden Desire ----
   fd(1, "Model in a sculptural black dress emerging from shadow, editorial makeup by Sia"),
