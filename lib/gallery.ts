@@ -257,11 +257,6 @@ export const gallery: GalleryImage[] = [
   lb(1, "Classic red-lip beauty portrait with winged lash and a flawless satin complexion"),
   lb(2, "Polished portrait in a cobalt blazer with soft rose glam and a sleek bun"),
 
-  // ---- Events (placeholders — no images uploaded yet) ----
-  { src: "/images/portfolio/events/events-01.jpg", category: "events", alt: "Polished evening glam for a special event" },
-  { src: "/images/portfolio/events/events-02.jpg", category: "events", alt: "Soft smoky eye for a black-tie occasion" },
-  { src: "/images/portfolio/events/events-03.jpg", category: "events", alt: "Radiant party makeup with a warm bronze eye" },
-  { src: "/images/portfolio/events/events-04.jpg", category: "events", alt: "Elegant evening look with a classic red lip" },
-  { src: "/images/portfolio/events/events-05.jpg", category: "events", alt: "Glowing festive glam for a celebration" },
-  { src: "/images/portfolio/events/events-06.jpg", category: "events", alt: "Statement evening eye with luminous skin" },
+  // ---- Events ----
+  { src: "/images/portfolio/events/events-couple-01.png", category: "events", alt: "Bride and groom sharing a laughing embrace by a rustic barn, then posing together with a bright wildflower bouquet" },
 ];
