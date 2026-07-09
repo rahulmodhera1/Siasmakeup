@@ -48,8 +48,9 @@ export const services: Service[] = [
   {
     title: "Bridal",
     blurb: "Timeless, photograph-ready beauty for the day you'll remember forever.",
-    image: "/images/portfolio/bridal/bridal-3.jpeg",
+    image: "/images/portfolio/bridal/Merald2.jpeg",
     category: "bridal",
+    imagePosition: "50% 20%",
   },
   {
     title: "Fashion",
