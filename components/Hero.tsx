@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
 
 const EASE = [0.23, 1, 0.32, 1] as const;
 
@@ -21,7 +20,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="grain relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-bone px-6 pt-24 pb-16"
+      className="grain relative flex w-full items-center justify-center overflow-hidden bg-bone px-6 pt-24 pb-16 lg:min-h-[100svh]"
     >
       {/* ---------- Photographic foliage background ---------- */}
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
@@ -119,24 +118,6 @@ export function Hero() {
           </a>
         </motion.div>
       </div>
-
-      {/* Scroll cue */}
-      <motion.a
-        href="#about"
-        aria-label="Scroll to learn more"
-        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-stone"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.3 }}
-      >
-        <motion.span
-          className="block"
-          animate={reduce ? {} : { y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <ArrowDown strokeWidth={1} className="h-6 w-6" />
-        </motion.span>
-      </motion.a>
     </section>
   );
 }
