@@ -15,10 +15,12 @@ import {
 } from "@/lib/gallery";
 
 const EASE = [0.23, 1, 0.32, 1] as const;
+const PREVIEW_COUNT = 12;
 
 export function Portfolio() {
   const [filter, setFilter] = useState<Category | "all">("all");
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [showAll, setShowAll] = useState(false);
 
   // "What I Do" cards dispatch this so the grid arrives pre-filtered.
   useEffect(() => {
@@ -29,6 +31,9 @@ export function Portfolio() {
     window.addEventListener("filter-portfolio", onFilter);
     return () => window.removeEventListener("filter-portfolio", onFilter);
   }, []);
+
+  // Collapse back to the preview count whenever the active filter changes.
+  useEffect(() => setShowAll(false), [filter]);
 
   const visible = useMemo(() => {
     if (filter !== "all") return gallery.filter((g) => g.category === filter);
@@ -53,6 +58,10 @@ export function Portfolio() {
     }
     return groups.some((grp) => grp.collection) ? groups : null;
   }, [filter, visible]);
+
+  // On "All", show a curated preview until the visitor asks to see everything.
+  const isTruncated = filter === "all" && !showAll && visible.length > PREVIEW_COUNT;
+  const displayed = isTruncated ? visible.slice(0, PREVIEW_COUNT) : visible;
 
   const openImage = (img: GalleryImage) => setActiveIndex(visible.indexOf(img));
 
@@ -186,7 +195,19 @@ export function Portfolio() {
             ))}
           </div>
         ) : (
-          <div className="mt-12">{grid(visible)}</div>
+          <div className="mt-12">{grid(displayed)}</div>
+        )}
+
+        {isTruncated && (
+          <Reveal className="mt-14 flex justify-center">
+            <button
+              type="button"
+              onClick={() => setShowAll(true)}
+              className="rounded-full border border-clay px-8 py-3.5 text-xs uppercase tracking-eyebrow text-clay transition-all duration-300 ease-out-expo hover:bg-clay hover:text-bone active:scale-[0.98]"
+            >
+              View All Work
+            </button>
+          </Reveal>
         )}
       </div>
 
