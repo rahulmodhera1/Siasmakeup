@@ -201,6 +201,22 @@ const ch = (n: number, alt: string, focus?: string): GalleryImage => ({
   focus,
 });
 
+// Studio fitness/glamour session with Elisa.
+export const elisa: Collection = {
+  credits: [
+    { role: "Makeup", lines: ["@Siasmakeup"] },
+    { role: "Photography", lines: ["@seeleyfoto"] },
+    { role: "Model", lines: ["@elisa.ann.xo"] },
+  ],
+};
+
+const el = (n: number, alt: string): GalleryImage => ({
+  src: `/images/portfolio/fashion/Elisa${n}.jpeg`,
+  category: "fashion",
+  alt,
+  collection: elisa,
+});
+
 // ---- Featured order --------------------------------------------------------
 // Srcs listed here are hoisted to the top of the "All" view, in this order.
 // Everything else follows in its natural gallery order.
@@ -208,6 +224,7 @@ export const featured: string[] = [
   "/images/portfolio/bridal/Merald1.jpeg",
   "/images/portfolio/bridal/fanta1.jpeg",
   "/images/portfolio/fashion/Forbidden Desire 1.jpeg",
+  "/images/portfolio/fashion/Elisa1.jpeg",
   "/images/portfolio/fashion/Nequita_1.jpeg",
   "/images/portfolio/photography/Danimac_1.jpeg",
   "/images/portfolio/fashion/Nequita_3.jpeg",
@@ -255,6 +272,15 @@ export const gallery: GalleryImage[] = [
   // ---- Fashion · Nequita music-video set stills ----
   ns(1, "Music-video set still under pink and blue neon with dramatic smoked-out glam"),
   ns(2, "Close set still in studded mesh with bold lashes under violet light"),
+
+  // ---- Fashion · Elisa studio glamour session ----
+  el(1, "Athletic studio portrait in a black bodysuit with sculpted contour and dewy skin"),
+  el(2, "Full-length studio look in a black satin bow set with sleek glam"),
+  el(3, "Side-profile studio portrait in black strappy lingerie on a bar stool"),
+  el(4, "Close studio portrait in a rhinestone mesh set with a sculpted, sun-kissed glow"),
+  el(5, "Rear studio portrait in a rhinestone mesh set against a dark backdrop"),
+  el(6, "Denim bikini portrait by a sunlit window with a bold contoured glam"),
+  el(7, "Denim bikini portrait against exposed brick with dewy, sculpted skin"),
 
   // ---- Photography · Danimac portrait session ----
   dm(1, "Warm close-up portrait with a precise wing and glossy nude lip on copper-red hair"),
