@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
+import { ArrowDown } from "lucide-react";
 
 const EASE = [0.23, 1, 0.32, 1] as const;
 
@@ -20,7 +21,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="grain relative flex w-full items-center justify-center overflow-hidden bg-bone px-6 pt-24 pb-16 lg:min-h-[100svh]"
+      className="grain relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-bone px-6 pt-24 pb-16"
     >
       {/* ---------- Photographic foliage background ---------- */}
       <div aria-hidden className="pointer-events-none absolute inset-0 z-0">
@@ -30,7 +31,7 @@ export function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[12%_50%] lg:object-center"
+          className="object-cover object-center"
         />
         {/* Whisper-soft cream scrim to keep the centred text crisp. */}
         <div
@@ -40,9 +41,6 @@ export function Hero() {
               "radial-gradient(60% 55% at 50% 50%, rgba(244,241,236,0.45), transparent 75%)",
           }}
         />
-        {/* Fade out the fern at the very bottom on phones/tablets — it reads as
-            clutter behind the buttons there. Desktop's wider crop keeps it. */}
-        <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-bone from-[65%] to-transparent lg:hidden" />
       </div>
 
       {/* ---------- Centered brand statement ---------- */}
@@ -118,6 +116,24 @@ export function Hero() {
           </a>
         </motion.div>
       </div>
+
+      {/* Scroll cue */}
+      <motion.a
+        href="#about"
+        aria-label="Scroll to learn more"
+        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-stone lg:hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.3 }}
+      >
+        <motion.span
+          className="block"
+          animate={reduce ? {} : { y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ArrowDown strokeWidth={1} className="h-6 w-6" />
+        </motion.span>
+      </motion.a>
     </section>
   );
 }
