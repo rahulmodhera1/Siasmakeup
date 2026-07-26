@@ -145,7 +145,7 @@ export function Portfolio() {
   );
 
   return (
-    <section id="work" className="bg-bone py-24 md:py-32">
+    <section id="work" className="bg-bone pb-4 pt-24 md:pb-8 md:pt-32">
       <div className="mx-auto max-w-editorial px-6 md:px-10">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Selected Work</p>
