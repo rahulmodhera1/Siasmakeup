@@ -185,6 +185,22 @@ const ft = (n: number, alt: string): GalleryImage => ({
   collection: fanta,
 });
 
+// Rustic barn wedding with Chantel Dirksen Photography.
+export const chantel: Collection = {
+  credits: [
+    { role: "Makeup", lines: ["@Siasmakeup"] },
+    { role: "Photography", lines: ["@chanteldirksenphotography"] },
+  ],
+};
+
+const ch = (n: number, alt: string, focus?: string): GalleryImage => ({
+  src: `/images/portfolio/bridal/chantel${n}.jpg`,
+  category: "bridal",
+  alt,
+  collection: chantel,
+  focus,
+});
+
 // Studio fitness/glamour session with Elisa.
 export const elisa: Collection = {
   credits: [
@@ -230,6 +246,10 @@ export const gallery: GalleryImage[] = [
 
   // ---- Bridal · Fantauzzi Studios summer garden wedding ----
   ft(1, "Bride in a tiara laughing with her bridesmaids in dusty blue and navy, garden wedding"),
+
+  // ---- Bridal · Chantel Dirksen Photography ----
+  ch(1, "Bride and groom sharing a laughing embrace in front of a rustic barn", "50% 22%"),
+  ch(2, "Bride and groom smiling together in a forest clearing, holding a bright wildflower bouquet", "50% 15%"),
 
   // ---- Fashion · Forbidden Desire ----
   fd(1, "Model in a sculptural black dress emerging from shadow, editorial makeup by Sia"),
