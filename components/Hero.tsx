@@ -31,7 +31,7 @@ export function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-cover object-[10%_50%] lg:object-center"
         />
         {/* Whisper-soft cream scrim to keep the centred text crisp. */}
         <div
