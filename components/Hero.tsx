@@ -31,7 +31,7 @@ export function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[10%_50%] lg:object-center"
+          className="object-cover object-[12%_50%] lg:object-center"
         />
         {/* Whisper-soft cream scrim to keep the centred text crisp. */}
         <div
@@ -41,6 +41,9 @@ export function Hero() {
               "radial-gradient(60% 55% at 50% 50%, rgba(244,241,236,0.45), transparent 75%)",
           }}
         />
+        {/* Fade out the fern at the very bottom on phones/tablets — it reads as
+            clutter behind the buttons there. Desktop's wider crop keeps it. */}
+        <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-bone from-[65%] to-transparent lg:hidden" />
       </div>
 
       {/* ---------- Centered brand statement ---------- */}
