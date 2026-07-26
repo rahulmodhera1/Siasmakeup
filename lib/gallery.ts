@@ -154,6 +154,22 @@ const lb = (n: number, alt: string): GalleryImage => ({
   collection: lailaBiafore,
 });
 
+// Moody studio portrait session with Xenibee.
+export const xenibee: Collection = {
+  credits: [
+    { role: "Makeup", lines: ["@Siasmakeup"] },
+    { role: "Model", lines: ["@xenibee"] },
+    { role: "Photography", lines: ["@katmuartist"] },
+  ],
+};
+
+const xb = (n: number, alt: string): GalleryImage => ({
+  src: `/images/portfolio/photography/xenibee${n}.jpeg`,
+  category: "photography",
+  alt,
+  collection: xenibee,
+});
+
 // Winter wedding with House of Emerald.
 export const merald: Collection = {
   credits: [
@@ -305,6 +321,12 @@ export const gallery: GalleryImage[] = [
   lb(1, "Classic red-lip beauty portrait with winged lash and a flawless satin complexion"),
   lb(2, "Polished portrait in a cobalt blazer with soft rose glam and a sleek bun"),
 
+  // ---- Photography · Xenibee portrait session ----
+  xb(1, "Moody black and white portrait in sheer patterned mesh with a smoked-out eye"),
+  xb(2, "Hands-in-hair black and white portrait with a spiked choker and sharp winged liner"),
+  xb(3, "Softly lit black and white portrait with a warm smile and glossy natural glam"),
+
   // ---- Events ----
   { src: "/images/portfolio/events/Event1.jpeg", category: "events", alt: "Candid event portrait with soft glam, glowing skin and a tailored deep side part" },
+  { src: "/images/portfolio/events/Event2.jpeg", category: "events", alt: "Close-up event portrait with soft glam and glossy warm-toned lip on curly dark hair" },
 ];
