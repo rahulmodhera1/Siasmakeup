@@ -185,22 +185,6 @@ const ft = (n: number, alt: string): GalleryImage => ({
   collection: fanta,
 });
 
-// Rustic barn wedding with Chantel Dirksen Photography.
-export const chantel: Collection = {
-  credits: [
-    { role: "Makeup", lines: ["@Siasmakeup"] },
-    { role: "Photography", lines: ["@chanteldirksenphotography"] },
-  ],
-};
-
-const ch = (n: number, alt: string, focus?: string): GalleryImage => ({
-  src: `/images/portfolio/events/chantel${n}.jpg`,
-  category: "events",
-  alt,
-  collection: chantel,
-  focus,
-});
-
 // Studio fitness/glamour session with Elisa.
 export const elisa: Collection = {
   credits: [
@@ -301,7 +285,6 @@ export const gallery: GalleryImage[] = [
   lb(1, "Classic red-lip beauty portrait with winged lash and a flawless satin complexion"),
   lb(2, "Polished portrait in a cobalt blazer with soft rose glam and a sleek bun"),
 
-  // ---- Events · Chantel Dirksen Photography ----
-  ch(1, "Bride and groom sharing a laughing embrace in front of a rustic barn", "50% 22%"),
-  ch(2, "Bride and groom smiling together in a forest clearing, holding a bright wildflower bouquet", "50% 15%"),
+  // ---- Events ----
+  { src: "/images/portfolio/events/Event1.jpeg", category: "events", alt: "Candid event portrait with soft glam, glowing skin and a tailored deep side part" },
 ];

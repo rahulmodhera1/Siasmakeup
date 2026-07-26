@@ -69,9 +69,9 @@ export const services: Service[] = [
   {
     title: "Events",
     blurb: "Polished glam for galas, parties and the moments worth dressing up for.",
-    image: "/images/portfolio/events/chantel2.jpg",
+    image: "/images/portfolio/events/Event1.jpeg",
     category: "events",
-    imagePosition: "50% 25%",
+    imagePosition: "50% 15%",
   },
 ];
 
