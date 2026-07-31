@@ -151,22 +151,24 @@ export const priceList: PriceCategory[] = [
     blocks: [
       {
         items: [
-          { name: "False Lash Application", price: "$5" },
-          {
-            name: "False Lash + Liner",
-            price: "$10",
-            includes: "Mascara, tightrope lining, false lashes.",
-          },
-          {
-            name: "Brows Only",
-            price: "$20",
-            includes: "Filling, concealing + powder.",
-          },
-          {
-            name: "Eyes Only",
-            price: "$30",
-            includes: "Light brows, eyeshadow, liner, mascara + lashes.",
-          },
+          // ---- Paused until Sia has a set studio location ----
+          // Restore these four rows (in order) when asked to add them back:
+          // { name: "False Lash Application", price: "$5" },
+          // {
+          //   name: "False Lash + Liner",
+          //   price: "$10",
+          //   includes: "Mascara, tightrope lining, false lashes.",
+          // },
+          // {
+          //   name: "Brows Only",
+          //   price: "$20",
+          //   includes: "Filling, concealing + powder.",
+          // },
+          // {
+          //   name: "Eyes Only",
+          //   price: "$30",
+          //   includes: "Light brows, eyeshadow, liner, mascara + lashes.",
+          // },
           {
             name: "Express Face",
             price: "$45",
