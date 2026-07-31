@@ -329,4 +329,5 @@ export const gallery: GalleryImage[] = [
   // ---- Events ----
   { src: "/images/portfolio/events/Event1.jpeg", category: "events", alt: "Candid event portrait with soft glam, glowing skin and a tailored deep side part" },
   { src: "/images/portfolio/events/Event2.jpeg", category: "events", alt: "Close-up event portrait with soft glam and glossy warm-toned lip on curly dark hair" },
+  { src: "/images/portfolio/events/Event3.jpeg", category: "events", alt: "Bold graphic eye portrait in pink and purple with a soft glossy nude lip" },
 ];
